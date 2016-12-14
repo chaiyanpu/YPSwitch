@@ -16,6 +16,7 @@ enum YPSwitchEnum<YPSwitchTpye> {
 }
 
 class YPSwitch:UIControl{
+    
     var switchStokeBG:YPSwitchBG?
     var switchFillBG:CAShapeLayer?
     var switchThumb:YPSwitchThumb?
