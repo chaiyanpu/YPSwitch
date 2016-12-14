@@ -17,6 +17,7 @@
 		E6798E851E00FD7500ADBE61 /* YPAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6798E841E00FD7500ADBE61 /* YPAnimation.swift */; };
 		E6798E871E00FD9400ADBE61 /* YPSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6798E861E00FD9400ADBE61 /* YPSwitch.swift */; };
 		E6798E891E00FF3900ADBE61 /* YPAnimationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6798E881E00FF3900ADBE61 /* YPAnimationProtocol.swift */; };
+		E6798E8D1E01658600ADBE61 /* YPPopAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6798E8C1E01658600ADBE61 /* YPPopAnimation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		E6798E841E00FD7500ADBE61 /* YPAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPAnimation.swift; sourceTree = "<group>"; };
 		E6798E861E00FD9400ADBE61 /* YPSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPSwitch.swift; sourceTree = "<group>"; };
 		E6798E881E00FF3900ADBE61 /* YPAnimationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPAnimationProtocol.swift; sourceTree = "<group>"; };
+		E6798E8C1E01658600ADBE61 /* YPPopAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPPopAnimation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,9 +137,10 @@
 		E6798E831E00FC2800ADBE61 /* YPSwitch */ = {
 			isa = PBXGroup;
 			children = (
-				E6798E841E00FD7500ADBE61 /* YPAnimation.swift */,
 				E6798E861E00FD9400ADBE61 /* YPSwitch.swift */,
+				E6798E841E00FD7500ADBE61 /* YPAnimation.swift */,
 				E6798E881E00FF3900ADBE61 /* YPAnimationProtocol.swift */,
+				E6798E8C1E01658600ADBE61 /* YPPopAnimation.swift */,
 			);
 			name = YPSwitch;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				E6798E891E00FF3900ADBE61 /* YPAnimationProtocol.swift in Sources */,
 				E6798E871E00FD9400ADBE61 /* YPSwitch.swift in Sources */,
 				E6266E451DF91CDE0005BD7D /* ViewController.swift in Sources */,
+				E6798E8D1E01658600ADBE61 /* YPPopAnimation.swift in Sources */,
 				E6798E851E00FD7500ADBE61 /* YPAnimation.swift in Sources */,
 				E6266E431DF91CDE0005BD7D /* AppDelegate.swift in Sources */,
 			);

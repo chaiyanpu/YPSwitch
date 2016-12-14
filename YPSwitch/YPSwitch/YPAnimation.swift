@@ -7,3 +7,11 @@
 //
 
 import Foundation
+enum AnimationType{
+    case animationOne
+    case animationTwo
+}
+
+class YPAnimation:NSObject,YPAnimationProtocol{
+   
+}

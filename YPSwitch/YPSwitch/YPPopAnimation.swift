@@ -1,5 +1,5 @@
 //
-//  YPAnimationProtocol.swift
+//  YPPopAnimation.swift
 //  YPSwitch
 //
 //  Created by chai on 2016/12/14.
@@ -7,8 +7,3 @@
 //
 
 import Foundation
-
-protocol YPAnimationProtocol{
-    
-}
-
