@@ -6,40 +6,61 @@
 //  Copyright © 2016年 chaiyanpu. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-typealias YPSwitchTpye = (YPSwitchBG?,YPSwitchThumb?)
+enum YPSwitchType {
 
-enum YPSwitchEnum<YPSwitchTpye> {
-    case swiftchOne()
+    case switchOne
+    case switchTwo
+    case switchThree
+    case switchFour
+    
+    var animation:YPAnimation{
+        switch self {
+        case .switchOne:
+            return YPAnimation()
+        case .switchTwo:
+            return YPPopAnimation()
+        case .switchThree:
+            return YPAnimation()
+        case .switchFour:
+            return YPAnimation()
+        }
+    }
 }
 
 class YPSwitch:UIControl{
     
-    var switchStokeBG:YPSwitchBG?
-    var switchFillBG:CAShapeLayer?
-    var switchThumb:YPSwitchThumb?
+    open var animationLayer:(bgLayer: AnimationLayer, thumbLayer: AnimationLayer,stokeLayer:AnimationLayer)?
+    
+    open var animation:YPAnimation?
+    
+    open var bgColor:UIColor = .white
+    open var stokeColor:UIColor = .white
+    open var thumbColor:UIColor = .green
+    open var stokeLineWidth:CGFloat = 1.0
     
     var on: Bool = false
     var isTapGesture: Bool = false
     
-    var animationView : YPAnimation!
     var _previousTouchPoint:CGPoint!
     
     
-    init(frame: CGRect, animationType : AnimationType) {
+    init(frame: CGRect,type: YPSwitchType){
         super.init(frame: frame)
-        
         backgroundColor = UIColor.clear
-        
+        animation = type.animation
+ 
+//TODO:构造Layer
+        animationLayer = (bgLayer:AnimationLayer(),thumbLayer:AnimationLayer(),stokeLayer:AnimationLayer())
+  
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder){
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool{
 //        isTapGesture = true
 //        _previousTouchPoint = touch.location(in: self)
 //        
@@ -50,7 +71,7 @@ class YPSwitch:UIControl{
         
     }
     
-    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool{
 //        isTapGesture = false
 //        animationView.pop_removeAllAnimations()
 //        let currentTouch = touch.location(in: self)
@@ -64,7 +85,7 @@ class YPSwitch:UIControl{
         return true
     }
     
-    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?){
 //        if(isTapGesture){
 //            if(self.on){
 //                animationView.animateToProgress(0.0)
@@ -77,7 +98,7 @@ class YPSwitch:UIControl{
 //        }
     }
     
-    override func cancelTracking(with event: UIEvent?) {
+    override func cancelTracking(with event: UIEvent?){
 //        if(isTapGesture){
 //            if(self.on){
 //                animationView.animateToProgress(0.0)
@@ -130,10 +151,17 @@ class YPSwitch:UIControl{
     
 }
 
-class YPSwitchBG:UIControl{
-
+class AnimationLayer:CAShapeLayer{
+    
+    override init() {
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    
 }
 
-class YPSwitchThumb:UIControl{
-
-}

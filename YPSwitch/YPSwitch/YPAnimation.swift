@@ -6,12 +6,20 @@
 //  Copyright © 2016年 chaiyanpu. All rights reserved.
 //
 
-import Foundation
-enum AnimationType{
-    case animationOne
-    case animationTwo
-}
+import UIKit
 
-class YPAnimation:NSObject,YPAnimationProtocol{
-   
+class YPAnimation:YPAnimationProtocol{
+    
+    var bgTargetColor:UIColor?
+    
+    var thumbTargetColor:UIColor?
+    
+    func playAnimation(_ bgLayer: CAShapeLayer, thumbLayer : CAShapeLayer,stokeLayer:CAShapeLayer){
+        
+    }
+    
+    func deselectAnimation(_ bgLayer : CAShapeLayer, thumbLayer : CAShapeLayer,stockLayer:CAShapeLayer){
+        
+    }
+
 }

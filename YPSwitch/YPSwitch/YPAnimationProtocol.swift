@@ -8,10 +8,38 @@
 
 import UIKit
 protocol YPAnimationProtocol{
-    func playAnimation(_ bgLayer: CAShapeLayer, thumbLayer : CAShapeLayer)
     
-    func deselectAnimation(_ bgLayer : CAShapeLayer, thumbLayer : CAShapeLayer, defaultTextColor : UIColor, defaultIconColor : UIColor)
+    var bgTargetColor:UIColor{get}
     
-    func selectedState(_ bgLayer : CAShapeLayer, thumbLayer : CAShapeLayer)
+    var thumbTargetColor:UIColor{get}
+    
+    func playAnimation(_ bgLayer: CAShapeLayer, thumbLayer : CAShapeLayer,stokeLayer:CAShapeLayer)
+    
+    
+    
+    func deselectAnimation(_ bgLayer : CAShapeLayer, thumbLayer : CAShapeLayer,stockLayer:CAShapeLayer)
+    
+    
+    
 }
 
+extension YPAnimationProtocol{
+    
+    var bgTargetColor:UIColor{
+        return UIColor.green
+    }
+    
+    var thumbTargetColor:UIColor{
+        return UIColor.darkGray
+    }
+    
+    func playAnimation(_ bgLayer: CAShapeLayer, thumbLayer : CAShapeLayer,stokeLayer:CAShapeLayer){
+        
+    }
+    
+    func deselectAnimation(_ bgLayer : CAShapeLayer, thumbLayer : CAShapeLayer,stockLayer:CAShapeLayer){
+        
+    }
+    
+
+}

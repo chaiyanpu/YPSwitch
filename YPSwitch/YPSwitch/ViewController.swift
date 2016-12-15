@@ -12,6 +12,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let ypSwitch = YPSwitch(frame: CGRect(x: 50, y: 50, width: 50, height: 25), type: .switchTwo)
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
