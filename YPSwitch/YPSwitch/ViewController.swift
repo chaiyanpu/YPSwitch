@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let ypSwitch = YPSwitch(frame: CGRect(x: 50, y: 50, width: 50, height: 25), type: .switchTwo)
-        
+        view.addSubview(ypSwitch)
         // Do any additional setup after loading the view, typically from a nib.
     }
 
