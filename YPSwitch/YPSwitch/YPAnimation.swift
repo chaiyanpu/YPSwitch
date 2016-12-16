@@ -10,16 +10,32 @@ import UIKit
 
 class YPAnimation:YPAnimationProtocol{
     
+    var frame:CGRect
+    init(_ layoutFrame:CGRect) {
+        self.frame = layoutFrame
+        
+        //构造layer
+    }
+    
+    // MARK: - variable declararion
+    var strokeBackgroundLayer : CAShapeLayer = CAShapeLayer()
+    var backgroundLayer : CAShapeLayer = CAShapeLayer()
+    var thumbLayer : CAShapeLayer = CAShapeLayer()
+    
+    
+    //MARK: - YPAnimationProtocol
     var bgTargetColor:UIColor?
     
     var thumbTargetColor:UIColor?
     
-    func playAnimation(_ bgLayer: CAShapeLayer, thumbLayer : CAShapeLayer,stokeLayer:CAShapeLayer){
-        
+    func playAnimation(bgLayer: CAShapeLayer, thumbLayer : CAShapeLayer,stokeLayer:CAShapeLayer){
+        fatalError("override method in subclass")
     }
     
-    func deselectAnimation(_ bgLayer : CAShapeLayer, thumbLayer : CAShapeLayer,stockLayer:CAShapeLayer){
-        
+    func deselectAnimation(bgLayer : CAShapeLayer, thumbLayer : CAShapeLayer,stockLayer:CAShapeLayer){
+        fatalError("override method in subclass")
     }
 
+    
+   
 }

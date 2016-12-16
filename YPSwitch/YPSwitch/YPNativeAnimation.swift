@@ -1,14 +1,14 @@
 //
-//  YPPopAnimation.swift
+//  YPNativeAnimation.swift
 //  YPSwitch
 //
-//  Created by chai on 2016/12/14.
+//  Created by chai on 2016/12/16.
 //  Copyright © 2016年 chaiyanpu. All rights reserved.
 //
 
 import UIKit
 
-class YPPopAnimation:YPAnimation{
+class YPNativeAnimation:YPAnimation{
     
     
     override init(_ layoutFrame:CGRect){

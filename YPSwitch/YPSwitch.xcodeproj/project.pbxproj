@@ -14,6 +14,7 @@
 		E6266E4D1DF91CDF0005BD7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6266E4B1DF91CDF0005BD7D /* LaunchScreen.storyboard */; };
 		E6266E581DF91CE00005BD7D /* YPSwitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6266E571DF91CE00005BD7D /* YPSwitchTests.swift */; };
 		E6266E631DF91CE10005BD7D /* YPSwitchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6266E621DF91CE10005BD7D /* YPSwitchUITests.swift */; };
+		E67841301E037BC700053823 /* YPNativeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E678412F1E037BC700053823 /* YPNativeAnimation.swift */; };
 		E6798E851E00FD7500ADBE61 /* YPAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6798E841E00FD7500ADBE61 /* YPAnimation.swift */; };
 		E6798E871E00FD9400ADBE61 /* YPSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6798E861E00FD9400ADBE61 /* YPSwitch.swift */; };
 		E6798E891E00FF3900ADBE61 /* YPAnimationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6798E881E00FF3900ADBE61 /* YPAnimationProtocol.swift */; };
@@ -51,6 +52,7 @@
 		E6266E5E1DF91CE00005BD7D /* YPSwitchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YPSwitchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6266E621DF91CE10005BD7D /* YPSwitchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPSwitchUITests.swift; sourceTree = "<group>"; };
 		E6266E641DF91CE10005BD7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E678412F1E037BC700053823 /* YPNativeAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPNativeAnimation.swift; sourceTree = "<group>"; };
 		E6798E841E00FD7500ADBE61 /* YPAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPAnimation.swift; sourceTree = "<group>"; };
 		E6798E861E00FD9400ADBE61 /* YPSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPSwitch.swift; sourceTree = "<group>"; };
 		E6798E881E00FF3900ADBE61 /* YPAnimationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPAnimationProtocol.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				E6798E841E00FD7500ADBE61 /* YPAnimation.swift */,
 				E6798E881E00FF3900ADBE61 /* YPAnimationProtocol.swift */,
 				E6798E8C1E01658600ADBE61 /* YPPopAnimation.swift */,
+				E678412F1E037BC700053823 /* YPNativeAnimation.swift */,
 			);
 			name = YPSwitch;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				E6798E891E00FF3900ADBE61 /* YPAnimationProtocol.swift in Sources */,
 				E6798E871E00FD9400ADBE61 /* YPSwitch.swift in Sources */,
 				E6266E451DF91CDE0005BD7D /* ViewController.swift in Sources */,
+				E67841301E037BC700053823 /* YPNativeAnimation.swift in Sources */,
 				E6798E8D1E01658600ADBE61 /* YPPopAnimation.swift in Sources */,
 				E6798E851E00FD7500ADBE61 /* YPAnimation.swift in Sources */,
 				E6266E431DF91CDE0005BD7D /* AppDelegate.swift in Sources */,

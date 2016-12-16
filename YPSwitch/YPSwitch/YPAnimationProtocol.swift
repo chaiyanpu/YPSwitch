@@ -13,13 +13,9 @@ protocol YPAnimationProtocol{
     
     var thumbTargetColor:UIColor{get}
     
-    func playAnimation(_ bgLayer: CAShapeLayer, thumbLayer : CAShapeLayer,stokeLayer:CAShapeLayer)
+    func playAnimation(bgLayer: CAShapeLayer, thumbLayer : CAShapeLayer,stokeLayer:CAShapeLayer)
     
-    
-    
-    func deselectAnimation(_ bgLayer : CAShapeLayer, thumbLayer : CAShapeLayer,stockLayer:CAShapeLayer)
-    
-    
+    func deselectAnimation(bgLayer : CAShapeLayer, thumbLayer : CAShapeLayer,stockLayer:CAShapeLayer)
     
 }
 
@@ -33,13 +29,4 @@ extension YPAnimationProtocol{
         return UIColor.darkGray
     }
     
-    func playAnimation(_ bgLayer: CAShapeLayer, thumbLayer : CAShapeLayer,stokeLayer:CAShapeLayer){
-        
-    }
-    
-    func deselectAnimation(_ bgLayer : CAShapeLayer, thumbLayer : CAShapeLayer,stockLayer:CAShapeLayer){
-        
-    }
-    
-
 }

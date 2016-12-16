@@ -9,22 +9,22 @@
 import UIKit
 
 enum YPSwitchType {
-
-    case switchOne
-    case switchTwo
-    case switchThree
-    case switchFour
+    
+    case switchOne(CGRect)
+    case switchTwo(CGRect)
+    case switchThree(CGRect)
+    case switchFour(CGRect)
     
     var animation:YPAnimation{
         switch self {
-        case .switchOne:
-            return YPAnimation()
-        case .switchTwo:
-            return YPPopAnimation()
-        case .switchThree:
-            return YPAnimation()
-        case .switchFour:
-            return YPAnimation()
+        case .switchOne(let rect):
+            return YPAnimation(rect)
+        case .switchTwo(let rect):
+            return YPPopAnimation(rect)
+        case .switchThree(let rect):
+            return YPAnimation(rect)
+        case .switchFour(let rect):
+            return YPAnimation(rect)
         }
     }
 }
@@ -45,15 +45,15 @@ class YPSwitch:UIControl{
     
     var _previousTouchPoint:CGPoint!
     
-    
     init(frame: CGRect,type: YPSwitchType){
-        super.init(frame: frame)
+        super.init(frame:frame)
         backgroundColor = UIColor.clear
+        
+        //TODO:构造Layer
         animation = type.animation
- 
-//TODO:构造Layer
-        animationLayer = (bgLayer:AnimationLayer(),thumbLayer:AnimationLayer(),stokeLayer:AnimationLayer())
-  
+        
+        animation?.playAnimation(bgLayer:AnimationLayer(), thumbLayer: AnimationLayer(), stokeLayer: AnimationLayer())
+
     }
     
     required init?(coder aDecoder: NSCoder){
