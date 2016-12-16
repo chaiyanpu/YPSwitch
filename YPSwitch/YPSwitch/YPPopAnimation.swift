@@ -11,8 +11,8 @@ import UIKit
 class YPPopAnimation:YPAnimation{
     
     
-    override init(_ layoutFrame:CGRect){
-        super.init(layoutFrame)
+    override init(){
+        
         
     }
     

@@ -10,18 +10,24 @@ import UIKit
 
 class YPAnimation:YPAnimationProtocol{
     
-    var frame:CGRect
-    init(_ layoutFrame:CGRect) {
-        self.frame = layoutFrame
+    
+    //default
+    var width : CGFloat = 60
+    var height : CGFloat = 35
+    
+    let thumbInset : CGFloat = 0
+    
+    var strokeColor = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1.0)
+    var selectedColor = UIColor(red: 111/255.0, green: 216/255.0, blue: 100/255.0, alpha: 1.0)
+
+    
+    init() {
         
+
         //构造layer
     }
     
-    // MARK: - variable declararion
-    var strokeBackgroundLayer : CAShapeLayer = CAShapeLayer()
-    var backgroundLayer : CAShapeLayer = CAShapeLayer()
-    var thumbLayer : CAShapeLayer = CAShapeLayer()
-    
+       
     
     //MARK: - YPAnimationProtocol
     var bgTargetColor:UIColor?

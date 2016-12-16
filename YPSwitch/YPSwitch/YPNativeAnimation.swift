@@ -11,8 +11,7 @@ import UIKit
 class YPNativeAnimation:YPAnimation{
     
     
-    override init(_ layoutFrame:CGRect){
-        super.init(layoutFrame)
+    override init(){
         
     }
     

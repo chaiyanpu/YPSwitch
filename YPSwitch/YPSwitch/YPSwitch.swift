@@ -10,51 +10,95 @@ import UIKit
 
 enum YPSwitchType {
     
-    case switchOne(CGRect)
-    case switchTwo(CGRect)
-    case switchThree(CGRect)
-    case switchFour(CGRect)
+    case switchOne
+    case switchTwo
+    case switchThree
+    case switchFour
     
     var animation:YPAnimation{
         switch self {
-        case .switchOne(let rect):
-            return YPAnimation(rect)
-        case .switchTwo(let rect):
-            return YPPopAnimation(rect)
-        case .switchThree(let rect):
-            return YPAnimation(rect)
-        case .switchFour(let rect):
-            return YPAnimation(rect)
+        case .switchOne:
+            return YPAnimation()
+        case .switchTwo:
+            return YPPopAnimation()
+        case .switchThree:
+            return YPAnimation()
+        case .switchFour:
+            return YPAnimation()
         }
     }
 }
 
 class YPSwitch:UIControl{
     
-    open var animationLayer:(bgLayer: AnimationLayer, thumbLayer: AnimationLayer,stokeLayer:AnimationLayer)?
+    open var animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?
     
     open var animation:YPAnimation?
     
     open var bgColor:UIColor = .white
     open var stokeColor:UIColor = .white
     open var thumbColor:UIColor = .green
-    open var stokeLineWidth:CGFloat = 1.0
+    open var stokeLineWidth:CGFloat = 2
+
+    let thumbInset : CGFloat = 1
+    var strokeColor = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1.0)
+    var selectedColor = UIColor(red: 111/255.0, green: 216/255.0, blue: 100/255.0, alpha: 1.0)
+    
+    // MARK: - variable declararion
+    var strokeBackgroundLayer : CAShapeLayer = CAShapeLayer()
+    var backgroundLayer : CAShapeLayer = CAShapeLayer()
+    var thumbLayer : CAShapeLayer = CAShapeLayer()
     
     var on: Bool = false
     var isTapGesture: Bool = false
     
     var _previousTouchPoint:CGPoint!
-    
-    init(frame: CGRect,type: YPSwitchType){
-        super.init(frame:frame)
+
+    init(position:CGPoint,size:CGSize = CGSize(width:60,height:35),type:YPSwitchType){
+        super.init(frame:CGRect(origin: position, size: size))
         backgroundColor = UIColor.clear
         
-        //TODO:构造Layer
-        animation = type.animation
         
-        animation?.playAnimation(bgLayer:AnimationLayer(), thumbLayer: AnimationLayer(), stokeLayer: AnimationLayer())
+        
+        //TODO:构造Layer
+        let width = size.width
+        let height = size.height
+        
+        strokeBackgroundLayer.path = backgroundPath(CGRect(x: 0,y: 0,width: width,height:height), radius: 50/2).cgPath
+        strokeBackgroundLayer.strokeColor = strokeColor.cgColor
+        strokeBackgroundLayer.fillColor = selectedColor.cgColor
+        strokeBackgroundLayer.lineWidth = stokeLineWidth
+        
+        backgroundLayer.path = backgroundPath(CGRect(x: stokeLineWidth/2,y: stokeLineWidth/2,width: width - (stokeLineWidth),height: height - (stokeLineWidth)), radius: 50/2).cgPath
+        backgroundLayer.fillColor = UIColor.white.cgColor
+        
+        thumbLayer.path = UIBezierPath(ovalIn: CGRect(x: thumbInset/2 + stokeLineWidth/2, y: thumbInset/2 + stokeLineWidth/2, width: height - thumbInset - (stokeLineWidth), height: height - thumbInset - (stokeLineWidth))).cgPath
+        thumbLayer.strokeColor = strokeColor.cgColor
+        thumbLayer.fillColor = UIColor.white.cgColor
+        thumbLayer.lineWidth = 0.5
+        thumbLayer.shadowColor = UIColor.black.cgColor
+        thumbLayer.shadowOpacity = 0.3
+        thumbLayer.shadowRadius = 1
+        thumbLayer.shadowOffset = CGSize(width: 0, height: 2)
+        
+        layer.addSublayer(strokeBackgroundLayer)
+        layer.addSublayer(backgroundLayer)
+        layer.addSublayer(thumbLayer)
+        
+        //add layer with animation to the truple
+        self.animationLayer = (bgLayer: backgroundLayer, thumbLayer: thumbLayer,stokeLayer:strokeBackgroundLayer)
+
+        //animation = type.animation
 
     }
+    
+    func backgroundPath(_ frame: CGRect, radius: CGFloat) -> UIBezierPath {
+        //// Rectangle Drawing
+        
+        let rectanglePath = UIBezierPath(roundedRect: CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width, height: frame.height), cornerRadius: frame.height/2)
+        return rectanglePath
+    }
+
     
     required init?(coder aDecoder: NSCoder){
         fatalError("init(coder:) has not been implemented")
@@ -147,21 +191,10 @@ class YPSwitch:UIControl{
 //        }
    
     }
+}
 
+extension YPSwitch{
     
 }
 
-class AnimationLayer:CAShapeLayer{
-    
-    override init() {
-        super.init()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    
-}
 
