@@ -34,11 +34,11 @@ class YPAnimation:YPAnimationProtocol{
     
     var thumbTargetColor:UIColor?
     
-    func playAnimation(bgLayer: CAShapeLayer, thumbLayer : CAShapeLayer,stokeLayer:CAShapeLayer){
+    func playAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)){
         fatalError("override method in subclass")
     }
     
-    func deselectAnimation(bgLayer : CAShapeLayer, thumbLayer : CAShapeLayer,stockLayer:CAShapeLayer){
+    func deselectAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)){
         fatalError("override method in subclass")
     }
 

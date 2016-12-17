@@ -13,9 +13,9 @@ protocol YPAnimationProtocol{
     
     var thumbTargetColor:UIColor{get}
     
-    func playAnimation(bgLayer: CAShapeLayer, thumbLayer : CAShapeLayer,stokeLayer:CAShapeLayer)
+    func playAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer))
     
-    func deselectAnimation(bgLayer : CAShapeLayer, thumbLayer : CAShapeLayer,stockLayer:CAShapeLayer)
+    func deselectAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer))
     
 }
 

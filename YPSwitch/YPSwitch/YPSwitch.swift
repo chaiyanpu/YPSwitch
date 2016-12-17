@@ -31,92 +31,48 @@ enum YPSwitchType {
 
 class YPSwitch:UIControl{
     
+    //Layer collection
     open var animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?
     
     open var animation:YPAnimation?
-    
-    open var bgColor:UIColor = .white
-    open var stokeColor:UIColor = .white
-    open var thumbColor:UIColor = .green
+    //边的宽度
     open var stokeLineWidth:CGFloat = 2
-
-    let thumbInset : CGFloat = 1
-    var strokeColor = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1.0)
-    var selectedColor = UIColor(red: 111/255.0, green: 216/255.0, blue: 100/255.0, alpha: 1.0)
-    
-    // MARK: - variable declararion
-    var strokeBackgroundLayer : CAShapeLayer = CAShapeLayer()
-    var backgroundLayer : CAShapeLayer = CAShapeLayer()
-    var thumbLayer : CAShapeLayer = CAShapeLayer()
+    //thumb离边的距离
+    open var thumbInset : CGFloat = 1
+    //白色背景
+    open var strokeColor = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1.0)
+    //绿色背景
+    open var selectedColor = UIColor(red: 111/255.0, green: 216/255.0, blue: 100/255.0, alpha: 1.0)
     
     var on: Bool = false
-    var isTapGesture: Bool = false
+    var isTap: Bool = false
     
-    var _previousTouchPoint:CGPoint!
+    var touchPoint:CGPoint!
 
     init(position:CGPoint,size:CGSize = CGSize(width:60,height:35),type:YPSwitchType){
         super.init(frame:CGRect(origin: position, size: size))
         backgroundColor = UIColor.clear
-        
-        
-        
-        //TODO:构造Layer
-        let width = size.width
-        let height = size.height
-        
-        strokeBackgroundLayer.path = backgroundPath(CGRect(x: 0,y: 0,width: width,height:height), radius: 50/2).cgPath
-        strokeBackgroundLayer.strokeColor = strokeColor.cgColor
-        strokeBackgroundLayer.fillColor = selectedColor.cgColor
-        strokeBackgroundLayer.lineWidth = stokeLineWidth
-        
-        backgroundLayer.path = backgroundPath(CGRect(x: stokeLineWidth/2,y: stokeLineWidth/2,width: width - (stokeLineWidth),height: height - (stokeLineWidth)), radius: 50/2).cgPath
-        backgroundLayer.fillColor = UIColor.white.cgColor
-        
-        thumbLayer.path = UIBezierPath(ovalIn: CGRect(x: thumbInset/2 + stokeLineWidth/2, y: thumbInset/2 + stokeLineWidth/2, width: height - thumbInset - (stokeLineWidth), height: height - thumbInset - (stokeLineWidth))).cgPath
-        thumbLayer.strokeColor = strokeColor.cgColor
-        thumbLayer.fillColor = UIColor.white.cgColor
-        thumbLayer.lineWidth = 0.5
-        thumbLayer.shadowColor = UIColor.black.cgColor
-        thumbLayer.shadowOpacity = 0.3
-        thumbLayer.shadowRadius = 1
-        thumbLayer.shadowOffset = CGSize(width: 0, height: 2)
-        
-        layer.addSublayer(strokeBackgroundLayer)
-        layer.addSublayer(backgroundLayer)
-        layer.addSublayer(thumbLayer)
-        
-        //add layer with animation to the truple
-        self.animationLayer = (bgLayer: backgroundLayer, thumbLayer: thumbLayer,stokeLayer:strokeBackgroundLayer)
-
-        //animation = type.animation
-
+        animation = type.animation
+        self.buildLayer(size)
     }
-    
-    func backgroundPath(_ frame: CGRect, radius: CGFloat) -> UIBezierPath {
-        //// Rectangle Drawing
-        
-        let rectanglePath = UIBezierPath(roundedRect: CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width, height: frame.height), cornerRadius: frame.height/2)
-        return rectanglePath
-    }
-
     
     required init?(coder aDecoder: NSCoder){
         fatalError("init(coder:) has not been implemented")
     }
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool{
-//        isTapGesture = true
-//        _previousTouchPoint = touch.location(in: self)
-//        
-//        let percent : Float = _previousTouchPoint.x / self.frame.width
-//        animationView.animateToProgress(percent)
-//        
+        isTap = true
+        touchPoint = touch.location(in: self)
+        
+        let percent : Float = Float(touchPoint.x) / Float(self.frame.width)
+        animation?.playAnimation(animationLayer:animationLayer)
+//        animation.animateToProgress(percent)
         return true
         
     }
     
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool{
-//        isTapGesture = false
+        isTap = false
 //        animationView.pop_removeAllAnimations()
 //        let currentTouch = touch.location(in: self)
 //        
@@ -125,7 +81,6 @@ class YPSwitch:UIControl{
 //        percent = min(percent, 1.0)
 //        animationView.progress = percent
 //        animationView.setNeedsDisplay()
-//        
         return true
     }
     
@@ -189,12 +144,52 @@ class YPSwitch:UIControl{
 //        }else{
 //            animationView.progress = progress
 //        }
-   
     }
 }
-
+//MARK: - 构造Layer
 extension YPSwitch{
     
+    func buildLayer(_ size:CGSize){
+        let width = size.width
+        let height = size.height
+        
+        let strokeBackgroundLayer = CAShapeLayer()
+        let backgroundLayer = CAShapeLayer()
+        let thumbLayer = CAShapeLayer()
+        
+        strokeBackgroundLayer.path = backgroundPath(CGRect(x: 0,y: 0,width: width,height:height)).cgPath
+        strokeBackgroundLayer.strokeColor = strokeColor.cgColor
+        strokeBackgroundLayer.fillColor = selectedColor.cgColor
+        strokeBackgroundLayer.lineWidth = stokeLineWidth
+        
+        backgroundLayer.path = backgroundPath(CGRect(x: stokeLineWidth/2,y: stokeLineWidth/2,width: width - stokeLineWidth,height: height - stokeLineWidth)).cgPath
+        backgroundLayer.fillColor = UIColor.white.cgColor
+        
+        thumbLayer.path = UIBezierPath(ovalIn: CGRect(x: thumbInset/2 + stokeLineWidth/2, y: thumbInset/2 + stokeLineWidth/2, width: height - thumbInset - stokeLineWidth, height: height - thumbInset - stokeLineWidth)).cgPath
+        
+        thumbLayer.strokeColor = strokeColor.cgColor
+        thumbLayer.fillColor = UIColor.white.cgColor
+        thumbLayer.lineWidth = 0.5
+        thumbLayer.shadowColor = UIColor.black.cgColor
+        thumbLayer.shadowOpacity = 0.3
+        thumbLayer.shadowRadius = 1
+        thumbLayer.shadowOffset = CGSize(width: 0, height: 2)
+        
+        layer.addSublayer(strokeBackgroundLayer)
+        layer.addSublayer(backgroundLayer)
+        layer.addSublayer(thumbLayer)
+        
+        //add layer with animation to the truple
+        self.animationLayer = (bgLayer: backgroundLayer, thumbLayer: thumbLayer,stokeLayer:strokeBackgroundLayer)
+    }
+    
+    func backgroundPath(_ frame: CGRect) -> UIBezierPath {
+        
+        ////draw path
+        let rectanglePath = UIBezierPath(roundedRect: CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width, height: frame.height), cornerRadius: frame.height/2)
+        return rectanglePath
+    }
+
 }
 
 
