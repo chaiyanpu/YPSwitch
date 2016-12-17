@@ -29,6 +29,32 @@ enum YPSwitchType {
     }
 }
 
+enum YPSwitchResult{
+    
+    case open
+    case close
+    
+    func on(_ on:() -> ()) -> YPSwitchResult{
+        switch self{
+        case .open:
+            on()
+        default:
+            break
+        }
+        return self
+    }
+    
+    func off(_ off:() -> ()) -> YPSwitchResult {
+        switch self {
+        case .close:
+            off()
+        default:
+            break
+        }
+        return self
+    }
+}
+
 class YPSwitch:UIControl{
     
     //Layer collection
@@ -44,10 +70,13 @@ class YPSwitch:UIControl{
     //绿色背景
     open var selectedColor = UIColor(red: 111/255.0, green: 216/255.0, blue: 100/255.0, alpha: 1.0)
     
-    var on: Bool = false
-    var isTap: Bool = false
     
-    var touchPoint:CGPoint!
+    var swichResult: YPSwitchResult = .close
+    fileprivate var isOn:Bool = false
+    fileprivate var isTap: Bool = false
+    
+    fileprivate var touchPoint:CGPoint!
+    fileprivate var touchProgress:Float?
 
     init(position:CGPoint,size:CGSize = CGSize(width:60,height:35),type:YPSwitchType){
         super.init(frame:CGRect(origin: position, size: size))
@@ -65,7 +94,7 @@ class YPSwitch:UIControl{
         touchPoint = touch.location(in: self)
         
         let percent : Float = Float(touchPoint.x) / Float(self.frame.width)
-        animation?.playAnimation(animationLayer:animationLayer)
+        animation?.playAnimation(animationLayer:animationLayer,to:percent)
 //        animation.animateToProgress(percent)
         return true
         
@@ -73,83 +102,63 @@ class YPSwitch:UIControl{
     
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool{
         isTap = false
-//        animationView.pop_removeAllAnimations()
-//        let currentTouch = touch.location(in: self)
-//        
-//        var percent : CGFloat = currentTouch.x / self.frame.width
-//        percent = max(percent, 0.0)
-//        percent = min(percent, 1.0)
-//        animationView.progress = percent
+        //TODO: - removeAnimation 取消所有动画，还是跟着动画走？
+        let currentTouch = touch.location(in: self)
+        var percent : CGFloat = currentTouch.x / self.frame.width
+        percent = max(percent, 0.0)
+        percent = min(percent, 1.0)
+        
+        //TODO: - animation
+        self.touchProgress = Float(percent)
 //        animationView.setNeedsDisplay()
         return true
     }
     
     override func endTracking(_ touch: UITouch?, with event: UIEvent?){
-//        if(isTapGesture){
-//            if(self.on){
-//                animationView.animateToProgress(0.0)
-//            }else{
-//                animationView.animateToProgress(1.0)
-//            }
-//            self.on = !self.on
-//        }else{
-//            endToggleAnimation()
-//        }
+        //根据状态决定行为
+        animationByState()
     }
     
     override func cancelTracking(with event: UIEvent?){
-//        if(isTapGesture){
-//            if(self.on){
-//                animationView.animateToProgress(0.0)
-//            }else{
-//                animationView.animateToProgress(1.0)
-//            }
-//            self.on = !self.on
-//        }else{
-//            endToggleAnimation()
-//        }
+         animationByState()
     }
     
-    func endToggleAnimation(){
-        
-//        var newProgress : CGFloat!
-//        if(animationView.progress >= 0.5)
-//        {
-//            newProgress = 1.0
-//            animationView.animateToProgress(newProgress)
-//        }else{
-//            newProgress = 0.0
-//            animationView.animateToProgress(newProgress)
-//        }
-//        
-//        if(on && newProgress == 0)
-//        {
-//            on = false
-//            sendActions(for: UIControlEvents.valueChanged)
-//        }else if(!on && newProgress == 1){
-//            on = true
-//            sendActions(for: UIControlEvents.valueChanged)
-//        }
-        
+    fileprivate func animationByState(){
+        switch isTap {
+        case true:
+            if isOn{
+                animation?.playAnimation(animationLayer: animationLayer, to: 0)
+            }else{
+                animation?.playAnimation(animationLayer: animationLayer, to: 1)
+            }
+            //TODO:回调
+            isOn = !isOn
+        case false:
+            //TODO: - 判断结束拖拽位置
+            endToggleAnimation()
+        }
     }
     
-    func setOn(_ on: Bool, animated: Bool){
+    fileprivate func endToggleAnimation(){
         
-//        var progress : CGFloat = 0.0
-//        if on {
-//            progress = 1.0
-//        }
-//        if(animated){
-//            animationView.animateToProgress(progress)
-//        }else{
-//            animationView.progress = progress
-//        }
+        var newProgress:Float!
+        let standard:Float = 0.5
+        if self.touchProgress ?? 0 >= standard{
+            newProgress = 1.0
+             //TODO:回调
+        }else{
+            newProgress = 0.0
+        }
+        animation?.playAnimation(animationLayer: animationLayer, to: newProgress)
+        isOn = newProgress > standard ? true : false
     }
+    
 }
+
 //MARK: - 构造Layer
 extension YPSwitch{
     
-    func buildLayer(_ size:CGSize){
+    fileprivate func buildLayer(_ size:CGSize){
         let width = size.width
         let height = size.height
         
@@ -183,7 +192,7 @@ extension YPSwitch{
         self.animationLayer = (bgLayer: backgroundLayer, thumbLayer: thumbLayer,stokeLayer:strokeBackgroundLayer)
     }
     
-    func backgroundPath(_ frame: CGRect) -> UIBezierPath {
+    fileprivate func backgroundPath(_ frame: CGRect) -> UIBezierPath {
         
         ////draw path
         let rectanglePath = UIBezierPath(roundedRect: CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width, height: frame.height), cornerRadius: frame.height/2)
