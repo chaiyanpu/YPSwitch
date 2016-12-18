@@ -18,7 +18,7 @@ enum YPSwitchType {
     var animation:YPAnimation{
         switch self {
         case .switchOne:
-            return YPAnimation()
+            return YPNativeAnimation()
         case .switchTwo:
             return YPPopAnimation()
         case .switchThree:
@@ -57,6 +57,9 @@ enum YPSwitchResult{
 
 class YPSwitch:UIControl{
     
+    //CompleteHandler
+    var handler:((_ action:YPSwitchResult)->())?
+    
     //Layer collection
     open var animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?
     
@@ -65,24 +68,30 @@ class YPSwitch:UIControl{
     open var stokeLineWidth:CGFloat = 2
     //thumb离边的距离
     open var thumbInset : CGFloat = 1
-    //白色背景
+    
+    //灰色边
     open var strokeColor = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1.0)
-    //绿色背景
+    //未选中背景颜色
+    open var unselectedColor = UIColor.white
+    //选中背景
     open var selectedColor = UIColor(red: 111/255.0, green: 216/255.0, blue: 100/255.0, alpha: 1.0)
+    //滑块颜色
+    open var trumbColor = UIColor.white
     
-    
-    var swichResult: YPSwitchResult = .close
+    var switchState: YPSwitchResult = .close
     fileprivate var isOn:Bool = false
     fileprivate var isTap: Bool = false
     
     fileprivate var touchPoint:CGPoint!
-    fileprivate var touchProgress:Float?
+    fileprivate var endPoint:CGPoint!
 
-    init(position:CGPoint,size:CGSize = CGSize(width:60,height:35),type:YPSwitchType){
+    init(position:CGPoint,size:CGSize = CGSize(width:60,height:35),type:YPSwitchType,_ hadler:@escaping (_ action:YPSwitchResult)->()){
         super.init(frame:CGRect(origin: position, size: size))
         backgroundColor = UIColor.clear
         animation = type.animation
+        animation?.animationSize = size
         self.buildLayer(size)
+        self.handler = hadler
     }
     
     required init?(coder aDecoder: NSCoder){
@@ -90,40 +99,38 @@ class YPSwitch:UIControl{
     }
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool{
+        
         isTap = true
         touchPoint = touch.location(in: self)
         
-        let percent : Float = Float(touchPoint.x) / Float(self.frame.width)
-        animation?.playAnimation(animationLayer:animationLayer,to:percent)
-//        animation.animateToProgress(percent)
         return true
-        
     }
     
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool{
-        isTap = false
-        //TODO: - removeAnimation 取消所有动画，还是跟着动画走？
-        let currentTouch = touch.location(in: self)
-        var percent : CGFloat = currentTouch.x / self.frame.width
-        percent = max(percent, 0.0)
-        percent = min(percent, 1.0)
         
-        //TODO: - animation
-        self.touchProgress = Float(percent)
-//        animationView.setNeedsDisplay()
+        isTap = false
+        endPoint = touch.location(in: self)
+        
         return true
     }
     
     override func endTracking(_ touch: UITouch?, with event: UIEvent?){
-        //根据状态决定行为
-        animationByState()
+        let endPoint = touch?.location(in: self)
+        if let point = endPoint{
+            if point.y < self.frame.size.height * 2 && point.y > -self.frame.size.height{
+                animationByState()
+            }
+        }
     }
     
     override func cancelTracking(with event: UIEvent?){
          animationByState()
     }
     
-    fileprivate func animationByState(){
+    //根据状态决定行为
+    fileprivate func animationByState(_ endPoint:CGPoint? = CGPoint(x: 0, y: 0)){
+        //移除所有 Animation
+        layer.removeAllAnimations()
         switch isTap {
         case true:
             if isOn{
@@ -132,7 +139,7 @@ class YPSwitch:UIControl{
                 animation?.playAnimation(animationLayer: animationLayer, to: 1)
             }
             //TODO:回调
-            isOn = !isOn
+            callBack()
         case false:
             //TODO: - 判断结束拖拽位置
             endToggleAnimation()
@@ -141,16 +148,23 @@ class YPSwitch:UIControl{
     
     fileprivate func endToggleAnimation(){
         
-        var newProgress:Float!
-        let standard:Float = 0.5
-        if self.touchProgress ?? 0 >= standard{
-            newProgress = 1.0
-             //TODO:回调
-        }else{
-            newProgress = 0.0
+        switch isOn {
+        case true:
+            if touchPoint.x - endPoint.x - self.frame.size.width/3  > 0{
+                animation?.playAnimation(animationLayer: animationLayer, to: 0)
+                callBack()
+            }
+        case false:
+            if endPoint.x - touchPoint.x - self.frame.size.width/3 > 0{
+                animation?.playAnimation(animationLayer: animationLayer, to: 1)
+                callBack()
+            }
         }
-        animation?.playAnimation(animationLayer: animationLayer, to: newProgress)
-        isOn = newProgress > standard ? true : false
+    }
+    
+    private func callBack(){
+        isOn = !isOn
+        handler?(isOn == true ? .open : .close)
     }
     
 }
@@ -165,19 +179,19 @@ extension YPSwitch{
         let strokeBackgroundLayer = CAShapeLayer()
         let backgroundLayer = CAShapeLayer()
         let thumbLayer = CAShapeLayer()
-        
+
         strokeBackgroundLayer.path = backgroundPath(CGRect(x: 0,y: 0,width: width,height:height)).cgPath
         strokeBackgroundLayer.strokeColor = strokeColor.cgColor
         strokeBackgroundLayer.fillColor = selectedColor.cgColor
         strokeBackgroundLayer.lineWidth = stokeLineWidth
         
         backgroundLayer.path = backgroundPath(CGRect(x: stokeLineWidth/2,y: stokeLineWidth/2,width: width - stokeLineWidth,height: height - stokeLineWidth)).cgPath
-        backgroundLayer.fillColor = UIColor.white.cgColor
+        backgroundLayer.fillColor = unselectedColor.cgColor
         
         thumbLayer.path = UIBezierPath(ovalIn: CGRect(x: thumbInset/2 + stokeLineWidth/2, y: thumbInset/2 + stokeLineWidth/2, width: height - thumbInset - stokeLineWidth, height: height - thumbInset - stokeLineWidth)).cgPath
         
         thumbLayer.strokeColor = strokeColor.cgColor
-        thumbLayer.fillColor = UIColor.white.cgColor
+        thumbLayer.fillColor = trumbColor.cgColor
         thumbLayer.lineWidth = 0.5
         thumbLayer.shadowColor = UIColor.black.cgColor
         thumbLayer.shadowOpacity = 0.3
@@ -191,10 +205,9 @@ extension YPSwitch{
         //add layer with animation to the truple
         self.animationLayer = (bgLayer: backgroundLayer, thumbLayer: thumbLayer,stokeLayer:strokeBackgroundLayer)
     }
-    
+     //draw path
     fileprivate func backgroundPath(_ frame: CGRect) -> UIBezierPath {
         
-        ////draw path
         let rectanglePath = UIBezierPath(roundedRect: CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width, height: frame.height), cornerRadius: frame.height/2)
         return rectanglePath
     }
