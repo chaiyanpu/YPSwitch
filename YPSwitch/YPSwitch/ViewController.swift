@@ -15,9 +15,11 @@ class ViewController: UIViewController {
         
         let rect = CGRect(x: 50, y: 50, width: 50, height: 25)
         let ypSwitch = YPSwitch(position: rect.origin, type: .switchOne){
-            result in
-            result.off {
-                
+             [unowned self] result in
+            result.off { _ in
+              print("off")
+            }.on { _ in
+              print("on")
             }
         }
         
