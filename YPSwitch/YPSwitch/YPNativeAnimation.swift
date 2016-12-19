@@ -13,7 +13,7 @@ class YPNativeAnimation:YPAnimation{
         case on
         case off
     }
-    var animDuration = 1.0
+   
     var progress:CGFloat!
     var animationTarget:AnimationTarget = .on
     
@@ -133,10 +133,7 @@ class YPNativeAnimation:YPAnimation{
     private func value<T>(onValue:T,offValue:T) -> T{
         return animationTarget == .on ? onValue : offValue
     }
-    
-    override func deselectAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?){
-        
-    }
+
     
 }
 

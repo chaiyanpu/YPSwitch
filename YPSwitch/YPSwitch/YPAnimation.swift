@@ -17,14 +17,10 @@ class YPAnimation:YPAnimationProtocol{
     
     var animationSize:CGSize?
     
+     var animDuration = 1.0
+    
     func playAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?,to:Float){
         fatalError("override method in subclass")
-    }
-    
-    func deselectAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?){
-        fatalError("override method in subclass")
-    }
-
-    
+    } 
    
 }

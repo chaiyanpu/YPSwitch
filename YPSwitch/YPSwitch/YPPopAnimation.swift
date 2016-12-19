@@ -17,9 +17,5 @@ class YPPopAnimation:YPAnimation{
         print("hehh")
     }
     
-    override func deselectAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?){
-        
-    }
-    
 }
 

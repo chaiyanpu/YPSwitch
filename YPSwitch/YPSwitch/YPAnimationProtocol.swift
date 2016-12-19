@@ -15,8 +15,6 @@ protocol YPAnimationProtocol{
     
     func playAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?,to:Float)
     
-    func deselectAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?)
-    
 }
 
 extension YPAnimationProtocol{

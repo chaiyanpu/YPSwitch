@@ -29,25 +29,27 @@ enum YPSwitchType {
     }
 }
 
-enum YPSwitchResult{
+enum YPSwitchResult<T>{
     
-    case open
-    case close
+    case open(T)
+    case close(T)
     
-    func on(_ on:() -> ()) -> YPSwitchResult{
+    @discardableResult
+    func on(_ on:(_ value:T) -> Void) -> YPSwitchResult{
         switch self{
-        case .open:
-            on()
+        case let .open(value):
+            on(value)
         default:
             break
         }
         return self
     }
     
-    func off(_ off:() -> ()) -> YPSwitchResult {
+    @discardableResult
+    func off(_ off:(_ value:T) -> Void) -> YPSwitchResult {
         switch self {
-        case .close:
-            off()
+        case let .close(value):
+            off(value)
         default:
             break
         }
@@ -57,18 +59,21 @@ enum YPSwitchResult{
 
 class YPSwitch:UIControl{
     
+    //可以为回调添加关联值,T为关联值的类型
+    typealias T = String
+    
     //CompleteHandler
-    var handler:((_ action:YPSwitchResult)->())?
+    var handler:((_ action:YPSwitchResult<T>)->())?
     
     //Layer collection
-    open var animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?
+    open var animationLayer:(stokeLayer:CAShapeLayer,bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer)?
     
-    open var animation:YPAnimation?
+    //Switch动画时间
+    open var animDuration = 0.5
     //边的宽度
-    open var stokeLineWidth:CGFloat = 2
+    open var stokeLineWidth:CGFloat = 1
     //thumb离边的距离
     open var thumbInset : CGFloat = 1
-    
     //灰色边
     open var strokeColor = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1.0)
     //未选中背景颜色
@@ -78,20 +83,32 @@ class YPSwitch:UIControl{
     //滑块颜色
     open var trumbColor = UIColor.white
     
-    var switchState: YPSwitchResult = .close
+    open var animation:YPAnimation?
+    var switchState: YPSwitchResult = .close("i an close")
     fileprivate var isOn:Bool = false
     fileprivate var isTap: Bool = false
     
     fileprivate var touchPoint:CGPoint!
     fileprivate var endPoint:CGPoint!
 
-    init(position:CGPoint,size:CGSize = CGSize(width:60,height:35),type:YPSwitchType,_ hadler:@escaping (_ action:YPSwitchResult)->()){
+    init(position:CGPoint,size:CGSize = CGSize(width:60,height:35),type:YPSwitchType,_ hadler:@escaping (_ action:YPSwitchResult<T>)->()){
+        
         super.init(frame:CGRect(origin: position, size: size))
+        config(size,type)
+        handler = hadler
+    }
+    
+    init(position:CGPoint,size:CGSize = CGSize(width:60,height:35),type:YPSwitchType){
+        super.init(frame:CGRect(origin: position, size: size))
+        config(size,type)
+    }
+    
+    func config(_ size:CGSize,_ type:YPSwitchType){
         backgroundColor = UIColor.clear
         animation = type.animation
         animation?.animationSize = size
+        animation?.animDuration = animDuration
         self.buildLayer(size)
-        self.handler = hadler
     }
     
     required init?(coder aDecoder: NSCoder){
@@ -161,10 +178,13 @@ class YPSwitch:UIControl{
             }
         }
     }
-    
+    //回调
     private func callBack(){
+        
         isOn = !isOn
-        handler?(isOn == true ? .open : .close)
+        switchState = isOn == true ? .open("i an open") : .close("i an close")
+        handler?(switchState)
+        sendActions(for: UIControlEvents.valueChanged)
     }
     
 }
@@ -173,22 +193,50 @@ class YPSwitch:UIControl{
 extension YPSwitch{
     
     fileprivate func buildLayer(_ size:CGSize){
-        let width = size.width
-        let height = size.height
+        
+        //add layer with animation to the truple
+        self.animationLayer = (stokeLayer:addStrokeBackgroundLayer(size),
+                               bgLayer:  addBackgroundLayer(size),
+                               thumbLayer:addThumbLayer(size))
+    }
+    
+    private func addStrokeBackgroundLayer(_ size:CGSize) -> CAShapeLayer{
         
         let strokeBackgroundLayer = CAShapeLayer()
-        let backgroundLayer = CAShapeLayer()
-        let thumbLayer = CAShapeLayer()
-
-        strokeBackgroundLayer.path = backgroundPath(CGRect(x: 0,y: 0,width: width,height:height)).cgPath
+        strokeBackgroundLayer.path = backgroundPath(CGRect(x: 0,
+                                                           y: 0,
+                                                           width: size.width,
+                                                           height:size.height)).cgPath
         strokeBackgroundLayer.strokeColor = strokeColor.cgColor
         strokeBackgroundLayer.fillColor = selectedColor.cgColor
         strokeBackgroundLayer.lineWidth = stokeLineWidth
+        layer.addSublayer(strokeBackgroundLayer)
+        return strokeBackgroundLayer
+    }
+    
+    
+    private func addBackgroundLayer(_ size:CGSize) -> CAShapeLayer{
         
-        backgroundLayer.path = backgroundPath(CGRect(x: stokeLineWidth/2,y: stokeLineWidth/2,width: width - stokeLineWidth,height: height - stokeLineWidth)).cgPath
+        let backgroundLayer = CAShapeLayer()
+        backgroundLayer.path = backgroundPath(CGRect(x: stokeLineWidth/2,
+                                                     y: stokeLineWidth/2,
+                                                     width: size.width - stokeLineWidth,
+                                                     height: size.height - stokeLineWidth)).cgPath
         backgroundLayer.fillColor = unselectedColor.cgColor
+        layer.addSublayer(backgroundLayer)
+        return backgroundLayer
+    }
+    
+    private func addThumbLayer(_ size:CGSize) -> CAShapeLayer{
         
-        thumbLayer.path = UIBezierPath(ovalIn: CGRect(x: thumbInset/2 + stokeLineWidth/2, y: thumbInset/2 + stokeLineWidth/2, width: height - thumbInset - stokeLineWidth, height: height - thumbInset - stokeLineWidth)).cgPath
+        let sizeH = size.height
+        let diameter = sizeH - thumbInset - stokeLineWidth
+        
+        let thumbLayer = CAShapeLayer()
+        thumbLayer.path = UIBezierPath(ovalIn: CGRect(x: thumbInset/2 + stokeLineWidth/2,
+                                                      y: thumbInset/2 + stokeLineWidth/2,
+                                                      width: diameter,
+                                                      height: diameter)).cgPath
         
         thumbLayer.strokeColor = strokeColor.cgColor
         thumbLayer.fillColor = trumbColor.cgColor
@@ -198,17 +246,17 @@ extension YPSwitch{
         thumbLayer.shadowRadius = 1
         thumbLayer.shadowOffset = CGSize(width: 0, height: 2)
         
-        layer.addSublayer(strokeBackgroundLayer)
-        layer.addSublayer(backgroundLayer)
         layer.addSublayer(thumbLayer)
-        
-        //add layer with animation to the truple
-        self.animationLayer = (bgLayer: backgroundLayer, thumbLayer: thumbLayer,stokeLayer:strokeBackgroundLayer)
+        return thumbLayer
     }
+    
      //draw path
     fileprivate func backgroundPath(_ frame: CGRect) -> UIBezierPath {
         
-        let rectanglePath = UIBezierPath(roundedRect: CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width, height: frame.height), cornerRadius: frame.height/2)
+        let rectanglePath = UIBezierPath(roundedRect: CGRect(x: frame.origin.x,
+                                                             y: frame.origin.y,
+                                                             width: frame.width, height: frame.height),
+                                         cornerRadius: frame.height/2)
         return rectanglePath
     }
 
