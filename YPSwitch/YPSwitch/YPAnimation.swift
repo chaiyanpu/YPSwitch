@@ -21,6 +21,6 @@ class YPAnimation:YPAnimationProtocol{
     
     func playAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?,to:Float){
         fatalError("override method in subclass")
-    } 
+    }
    
 }

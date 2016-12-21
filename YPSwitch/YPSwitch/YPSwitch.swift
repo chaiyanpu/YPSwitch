@@ -57,6 +57,8 @@ enum YPSwitchResult<T>{
     }
 }
 
+
+//ViewModel
 class YPSwitch:UIControl{
     
     //可以为回调添加关联值,T为关联值的类型
@@ -159,11 +161,11 @@ class YPSwitch:UIControl{
             callBack()
         case false:
             //TODO: - 判断结束拖拽位置
-            endToggleAnimation()
+            endDrag()
         }
     }
     
-    fileprivate func endToggleAnimation(){
+    fileprivate func endDrag(){
         
         switch isOn {
         case true:
@@ -189,7 +191,7 @@ class YPSwitch:UIControl{
     
 }
 
-//MARK: - 构造Layer
+//MARK: - 构造Layer  View层
 extension YPSwitch{
     
     fileprivate func buildLayer(_ size:CGSize){
