@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E6266E3E1DF91CDE0005BD7D"
-               BuildableName = "YPSwitch.app"
-               BlueprintName = "YPSwitch"
-               ReferencedContainer = "container:YPSwitch.xcodeproj">
+               BlueprintIdentifier = "E6E9A6251E0D4F35003EA270"
+               BuildableName = "YPSwitchExample.app"
+               BlueprintName = "YPSwitchExample"
+               ReferencedContainer = "container:YPSwitchExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,30 +32,30 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E6266E521DF91CE00005BD7D"
-               BuildableName = "YPSwitchTests.xctest"
-               BlueprintName = "YPSwitchTests"
-               ReferencedContainer = "container:YPSwitch.xcodeproj">
+               BlueprintIdentifier = "E6E9A6391E0D4F39003EA270"
+               BuildableName = "YPSwitchExampleTests.xctest"
+               BlueprintName = "YPSwitchExampleTests"
+               ReferencedContainer = "container:YPSwitchExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E6266E5D1DF91CE00005BD7D"
-               BuildableName = "YPSwitchUITests.xctest"
-               BlueprintName = "YPSwitchUITests"
-               ReferencedContainer = "container:YPSwitch.xcodeproj">
+               BlueprintIdentifier = "E6E9A6441E0D4F39003EA270"
+               BuildableName = "YPSwitchExampleUITests.xctest"
+               BlueprintName = "YPSwitchExampleUITests"
+               ReferencedContainer = "container:YPSwitchExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E6266E3E1DF91CDE0005BD7D"
-            BuildableName = "YPSwitch.app"
-            BlueprintName = "YPSwitch"
-            ReferencedContainer = "container:YPSwitch.xcodeproj">
+            BlueprintIdentifier = "E6E9A6251E0D4F35003EA270"
+            BuildableName = "YPSwitchExample.app"
+            BlueprintName = "YPSwitchExample"
+            ReferencedContainer = "container:YPSwitchExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -75,10 +75,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E6266E3E1DF91CDE0005BD7D"
-            BuildableName = "YPSwitch.app"
-            BlueprintName = "YPSwitch"
-            ReferencedContainer = "container:YPSwitch.xcodeproj">
+            BlueprintIdentifier = "E6E9A6251E0D4F35003EA270"
+            BuildableName = "YPSwitchExample.app"
+            BlueprintName = "YPSwitchExample"
+            ReferencedContainer = "container:YPSwitchExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,10 +94,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E6266E3E1DF91CDE0005BD7D"
-            BuildableName = "YPSwitch.app"
-            BlueprintName = "YPSwitch"
-            ReferencedContainer = "container:YPSwitch.xcodeproj">
+            BlueprintIdentifier = "E6E9A6251E0D4F35003EA270"
+            BuildableName = "YPSwitchExample.app"
+            BlueprintName = "YPSwitchExample"
+            ReferencedContainer = "container:YPSwitchExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

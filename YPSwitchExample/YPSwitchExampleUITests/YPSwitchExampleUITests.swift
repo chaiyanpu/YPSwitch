@@ -1,14 +1,14 @@
 //
-//  YPSwitchUITests.swift
-//  YPSwitchUITests
+//  YPSwitchExampleUITests.swift
+//  YPSwitchExampleUITests
 //
-//  Created by chai on 2016/12/8.
+//  Created by chai on 2016/12/23.
 //  Copyright © 2016年 chaiyanpu. All rights reserved.
 //
 
 import XCTest
 
-class YPSwitchUITests: XCTestCase {
+class YPSwitchExampleUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()

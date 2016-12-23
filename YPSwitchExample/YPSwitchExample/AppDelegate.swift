@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  YPSwitch
+//  YPSwitchExample
 //
-//  Created by chai on 2016/12/8.
+//  Created by chai on 2016/12/23.
 //  Copyright © 2016年 chaiyanpu. All rights reserved.
 //
 

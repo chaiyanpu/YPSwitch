@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  YPSwitch
+//  YPSwitchExample
 //
-//  Created by chai on 2016/12/8.
+//  Created by chai on 2016/12/23.
 //  Copyright © 2016年 chaiyanpu. All rights reserved.
 //
 
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
     func valueChange(_ sender:YPSwitch){
         switch sender.switchState{
         case let .open(value):
-    
+            
             print(value)
             self.view.backgroundColor = UIColor.lightGray
         case let .close(value):
@@ -55,7 +55,8 @@ class ViewController: UIViewController {
             self.view.backgroundColor = UIColor.white
         }
     }
-    
+
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

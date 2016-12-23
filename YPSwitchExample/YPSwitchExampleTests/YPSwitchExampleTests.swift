@@ -1,15 +1,15 @@
 //
-//  YPSwitchTests.swift
-//  YPSwitchTests
+//  YPSwitchExampleTests.swift
+//  YPSwitchExampleTests
 //
-//  Created by chai on 2016/12/8.
+//  Created by chai on 2016/12/23.
 //  Copyright © 2016年 chaiyanpu. All rights reserved.
 //
 
 import XCTest
-@testable import YPSwitch
+@testable import YPSwitchExample
 
-class YPSwitchTests: XCTestCase {
+class YPSwitchExampleTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

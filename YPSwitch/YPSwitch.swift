@@ -58,7 +58,7 @@ enum YPSwitchResult<T>{
 }
 
 
-//ViewModel
+//TODO: - ViewModel
 class YPSwitch:UIControl{
     
     //可以为回调添加关联值,T为关联值的类型

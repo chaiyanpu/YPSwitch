@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>YPSwitch.xcscheme</key>
+		<key>YPSwitchExample.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,17 +12,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>E6266E3E1DF91CDE0005BD7D</key>
+		<key>E6E9A6251E0D4F35003EA270</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E6266E521DF91CE00005BD7D</key>
+		<key>E6E9A6391E0D4F39003EA270</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E6266E5D1DF91CE00005BD7D</key>
+		<key>E6E9A6441E0D4F39003EA270</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -1,0 +1,575 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E6E9A62A1E0D4F36003EA270 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E9A6291E0D4F36003EA270 /* AppDelegate.swift */; };
+		E6E9A62C1E0D4F36003EA270 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E9A62B1E0D4F36003EA270 /* ViewController.swift */; };
+		E6E9A62F1E0D4F36003EA270 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6E9A62D1E0D4F36003EA270 /* Main.storyboard */; };
+		E6E9A6311E0D4F37003EA270 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6E9A6301E0D4F37003EA270 /* Assets.xcassets */; };
+		E6E9A6341E0D4F37003EA270 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6E9A6321E0D4F37003EA270 /* LaunchScreen.storyboard */; };
+		E6E9A63F1E0D4F39003EA270 /* YPSwitchExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E9A63E1E0D4F39003EA270 /* YPSwitchExampleTests.swift */; };
+		E6E9A64A1E0D4F39003EA270 /* YPSwitchExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E9A6491E0D4F39003EA270 /* YPSwitchExampleUITests.swift */; };
+		E6E9A65E1E0D4FB3003EA270 /* YPNativeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E9A6591E0D4FB3003EA270 /* YPNativeAnimation.swift */; };
+		E6E9A65F1E0D4FB3003EA270 /* YPPopAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E9A65A1E0D4FB3003EA270 /* YPPopAnimation.swift */; };
+		E6E9A6601E0D4FB3003EA270 /* YPAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E9A65B1E0D4FB3003EA270 /* YPAnimation.swift */; };
+		E6E9A6611E0D4FB3003EA270 /* YPAnimationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E9A65C1E0D4FB3003EA270 /* YPAnimationProtocol.swift */; };
+		E6E9A6621E0D4FB3003EA270 /* YPSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E9A65D1E0D4FB3003EA270 /* YPSwitch.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E6E9A63B1E0D4F39003EA270 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E6E9A61E1E0D4F33003EA270 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E6E9A6251E0D4F35003EA270;
+			remoteInfo = YPSwitchExample;
+		};
+		E6E9A6461E0D4F39003EA270 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E6E9A61E1E0D4F33003EA270 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E6E9A6251E0D4F35003EA270;
+			remoteInfo = YPSwitchExample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E6E9A6261E0D4F35003EA270 /* YPSwitchExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YPSwitchExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6E9A6291E0D4F36003EA270 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E6E9A62B1E0D4F36003EA270 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E6E9A62E1E0D4F36003EA270 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E6E9A6301E0D4F37003EA270 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E6E9A6331E0D4F37003EA270 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E6E9A6351E0D4F37003EA270 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6E9A63A1E0D4F39003EA270 /* YPSwitchExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YPSwitchExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6E9A63E1E0D4F39003EA270 /* YPSwitchExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPSwitchExampleTests.swift; sourceTree = "<group>"; };
+		E6E9A6401E0D4F39003EA270 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6E9A6451E0D4F39003EA270 /* YPSwitchExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YPSwitchExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6E9A6491E0D4F39003EA270 /* YPSwitchExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPSwitchExampleUITests.swift; sourceTree = "<group>"; };
+		E6E9A64B1E0D4F39003EA270 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6E9A6591E0D4FB3003EA270 /* YPNativeAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPNativeAnimation.swift; sourceTree = "<group>"; };
+		E6E9A65A1E0D4FB3003EA270 /* YPPopAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPPopAnimation.swift; sourceTree = "<group>"; };
+		E6E9A65B1E0D4FB3003EA270 /* YPAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPAnimation.swift; sourceTree = "<group>"; };
+		E6E9A65C1E0D4FB3003EA270 /* YPAnimationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPAnimationProtocol.swift; sourceTree = "<group>"; };
+		E6E9A65D1E0D4FB3003EA270 /* YPSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPSwitch.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E6E9A6231E0D4F35003EA270 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6E9A6371E0D4F39003EA270 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6E9A6421E0D4F39003EA270 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E6E9A61D1E0D4F33003EA270 = {
+			isa = PBXGroup;
+			children = (
+				E6E9A6281E0D4F35003EA270 /* YPSwitchExample */,
+				E6E9A63D1E0D4F39003EA270 /* YPSwitchExampleTests */,
+				E6E9A6481E0D4F39003EA270 /* YPSwitchExampleUITests */,
+				E6E9A6271E0D4F35003EA270 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E6E9A6271E0D4F35003EA270 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E6E9A6261E0D4F35003EA270 /* YPSwitchExample.app */,
+				E6E9A63A1E0D4F39003EA270 /* YPSwitchExampleTests.xctest */,
+				E6E9A6451E0D4F39003EA270 /* YPSwitchExampleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E6E9A6281E0D4F35003EA270 /* YPSwitchExample */ = {
+			isa = PBXGroup;
+			children = (
+				E6E9A6571E0D4FB3003EA270 /* YPSwitch */,
+				E6E9A6291E0D4F36003EA270 /* AppDelegate.swift */,
+				E6E9A62B1E0D4F36003EA270 /* ViewController.swift */,
+				E6E9A62D1E0D4F36003EA270 /* Main.storyboard */,
+				E6E9A6301E0D4F37003EA270 /* Assets.xcassets */,
+				E6E9A6321E0D4F37003EA270 /* LaunchScreen.storyboard */,
+				E6E9A6351E0D4F37003EA270 /* Info.plist */,
+			);
+			path = YPSwitchExample;
+			sourceTree = "<group>";
+		};
+		E6E9A63D1E0D4F39003EA270 /* YPSwitchExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				E6E9A63E1E0D4F39003EA270 /* YPSwitchExampleTests.swift */,
+				E6E9A6401E0D4F39003EA270 /* Info.plist */,
+			);
+			path = YPSwitchExampleTests;
+			sourceTree = "<group>";
+		};
+		E6E9A6481E0D4F39003EA270 /* YPSwitchExampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E6E9A6491E0D4F39003EA270 /* YPSwitchExampleUITests.swift */,
+				E6E9A64B1E0D4F39003EA270 /* Info.plist */,
+			);
+			path = YPSwitchExampleUITests;
+			sourceTree = "<group>";
+		};
+		E6E9A6571E0D4FB3003EA270 /* YPSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				E6E9A6581E0D4FB3003EA270 /* AnimationType */,
+				E6E9A65B1E0D4FB3003EA270 /* YPAnimation.swift */,
+				E6E9A65C1E0D4FB3003EA270 /* YPAnimationProtocol.swift */,
+				E6E9A65D1E0D4FB3003EA270 /* YPSwitch.swift */,
+			);
+			path = YPSwitch;
+			sourceTree = "<group>";
+		};
+		E6E9A6581E0D4FB3003EA270 /* AnimationType */ = {
+			isa = PBXGroup;
+			children = (
+				E6E9A6591E0D4FB3003EA270 /* YPNativeAnimation.swift */,
+				E6E9A65A1E0D4FB3003EA270 /* YPPopAnimation.swift */,
+			);
+			path = AnimationType;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E6E9A6251E0D4F35003EA270 /* YPSwitchExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6E9A64E1E0D4F39003EA270 /* Build configuration list for PBXNativeTarget "YPSwitchExample" */;
+			buildPhases = (
+				E6E9A6221E0D4F35003EA270 /* Sources */,
+				E6E9A6231E0D4F35003EA270 /* Frameworks */,
+				E6E9A6241E0D4F35003EA270 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YPSwitchExample;
+			productName = YPSwitchExample;
+			productReference = E6E9A6261E0D4F35003EA270 /* YPSwitchExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E6E9A6391E0D4F39003EA270 /* YPSwitchExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6E9A6511E0D4F3A003EA270 /* Build configuration list for PBXNativeTarget "YPSwitchExampleTests" */;
+			buildPhases = (
+				E6E9A6361E0D4F39003EA270 /* Sources */,
+				E6E9A6371E0D4F39003EA270 /* Frameworks */,
+				E6E9A6381E0D4F39003EA270 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E6E9A63C1E0D4F39003EA270 /* PBXTargetDependency */,
+			);
+			name = YPSwitchExampleTests;
+			productName = YPSwitchExampleTests;
+			productReference = E6E9A63A1E0D4F39003EA270 /* YPSwitchExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E6E9A6441E0D4F39003EA270 /* YPSwitchExampleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6E9A6541E0D4F3A003EA270 /* Build configuration list for PBXNativeTarget "YPSwitchExampleUITests" */;
+			buildPhases = (
+				E6E9A6411E0D4F39003EA270 /* Sources */,
+				E6E9A6421E0D4F39003EA270 /* Frameworks */,
+				E6E9A6431E0D4F39003EA270 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E6E9A6471E0D4F39003EA270 /* PBXTargetDependency */,
+			);
+			name = YPSwitchExampleUITests;
+			productName = YPSwitchExampleUITests;
+			productReference = E6E9A6451E0D4F39003EA270 /* YPSwitchExampleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E6E9A61E1E0D4F33003EA270 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = chaiyanpu;
+				TargetAttributes = {
+					E6E9A6251E0D4F35003EA270 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = RGKNBLUMCS;
+						ProvisioningStyle = Automatic;
+					};
+					E6E9A6391E0D4F39003EA270 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = RGKNBLUMCS;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E6E9A6251E0D4F35003EA270;
+					};
+					E6E9A6441E0D4F39003EA270 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = RGKNBLUMCS;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E6E9A6251E0D4F35003EA270;
+					};
+				};
+			};
+			buildConfigurationList = E6E9A6211E0D4F34003EA270 /* Build configuration list for PBXProject "YPSwitchExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E6E9A61D1E0D4F33003EA270;
+			productRefGroup = E6E9A6271E0D4F35003EA270 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E6E9A6251E0D4F35003EA270 /* YPSwitchExample */,
+				E6E9A6391E0D4F39003EA270 /* YPSwitchExampleTests */,
+				E6E9A6441E0D4F39003EA270 /* YPSwitchExampleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E6E9A6241E0D4F35003EA270 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6E9A6341E0D4F37003EA270 /* LaunchScreen.storyboard in Resources */,
+				E6E9A6311E0D4F37003EA270 /* Assets.xcassets in Resources */,
+				E6E9A62F1E0D4F36003EA270 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6E9A6381E0D4F39003EA270 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6E9A6431E0D4F39003EA270 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E6E9A6221E0D4F35003EA270 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6E9A6601E0D4FB3003EA270 /* YPAnimation.swift in Sources */,
+				E6E9A62C1E0D4F36003EA270 /* ViewController.swift in Sources */,
+				E6E9A65E1E0D4FB3003EA270 /* YPNativeAnimation.swift in Sources */,
+				E6E9A62A1E0D4F36003EA270 /* AppDelegate.swift in Sources */,
+				E6E9A65F1E0D4FB3003EA270 /* YPPopAnimation.swift in Sources */,
+				E6E9A6621E0D4FB3003EA270 /* YPSwitch.swift in Sources */,
+				E6E9A6611E0D4FB3003EA270 /* YPAnimationProtocol.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6E9A6361E0D4F39003EA270 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6E9A63F1E0D4F39003EA270 /* YPSwitchExampleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6E9A6411E0D4F39003EA270 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6E9A64A1E0D4F39003EA270 /* YPSwitchExampleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E6E9A63C1E0D4F39003EA270 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E6E9A6251E0D4F35003EA270 /* YPSwitchExample */;
+			targetProxy = E6E9A63B1E0D4F39003EA270 /* PBXContainerItemProxy */;
+		};
+		E6E9A6471E0D4F39003EA270 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E6E9A6251E0D4F35003EA270 /* YPSwitchExample */;
+			targetProxy = E6E9A6461E0D4F39003EA270 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E6E9A62D1E0D4F36003EA270 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E6E9A62E1E0D4F36003EA270 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E6E9A6321E0D4F37003EA270 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E6E9A6331E0D4F37003EA270 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E6E9A64C1E0D4F39003EA270 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E6E9A64D1E0D4F39003EA270 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E6E9A64F1E0D4F39003EA270 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RGKNBLUMCS;
+				INFOPLIST_FILE = YPSwitchExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.chaiyanpu.YPSwitchExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		E6E9A6501E0D4F39003EA270 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RGKNBLUMCS;
+				INFOPLIST_FILE = YPSwitchExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.chaiyanpu.YPSwitchExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		E6E9A6521E0D4F3A003EA270 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = RGKNBLUMCS;
+				INFOPLIST_FILE = YPSwitchExampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.chaiyanpu.YPSwitchExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YPSwitchExample.app/YPSwitchExample";
+			};
+			name = Debug;
+		};
+		E6E9A6531E0D4F3A003EA270 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = RGKNBLUMCS;
+				INFOPLIST_FILE = YPSwitchExampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.chaiyanpu.YPSwitchExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YPSwitchExample.app/YPSwitchExample";
+			};
+			name = Release;
+		};
+		E6E9A6551E0D4F3A003EA270 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = RGKNBLUMCS;
+				INFOPLIST_FILE = YPSwitchExampleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.chaiyanpu.YPSwitchExampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = YPSwitchExample;
+			};
+			name = Debug;
+		};
+		E6E9A6561E0D4F3A003EA270 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = RGKNBLUMCS;
+				INFOPLIST_FILE = YPSwitchExampleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.chaiyanpu.YPSwitchExampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = YPSwitchExample;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E6E9A6211E0D4F34003EA270 /* Build configuration list for PBXProject "YPSwitchExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6E9A64C1E0D4F39003EA270 /* Debug */,
+				E6E9A64D1E0D4F39003EA270 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E6E9A64E1E0D4F39003EA270 /* Build configuration list for PBXNativeTarget "YPSwitchExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6E9A64F1E0D4F39003EA270 /* Debug */,
+				E6E9A6501E0D4F39003EA270 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E6E9A6511E0D4F3A003EA270 /* Build configuration list for PBXNativeTarget "YPSwitchExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6E9A6521E0D4F3A003EA270 /* Debug */,
+				E6E9A6531E0D4F3A003EA270 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E6E9A6541E0D4F3A003EA270 /* Build configuration list for PBXNativeTarget "YPSwitchExampleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6E9A6551E0D4F3A003EA270 /* Debug */,
+				E6E9A6561E0D4F3A003EA270 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E6E9A61E1E0D4F33003EA270 /* Project object */;
+}
