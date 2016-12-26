@@ -22,9 +22,9 @@ enum YPSwitchType {
         case .switchTwo:
             return YPPopAnimation()
         case .switchThree:
-            return YPAnimation()
+            return YPBounceAnimation()
         case .switchFour:
-            return YPAnimation()
+            return YPRotationAnimaiton()
         }
     }
 }

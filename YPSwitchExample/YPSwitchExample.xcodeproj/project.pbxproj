@@ -19,6 +19,8 @@
 		E6E9A6601E0D4FB3003EA270 /* YPAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E9A65B1E0D4FB3003EA270 /* YPAnimation.swift */; };
 		E6E9A6611E0D4FB3003EA270 /* YPAnimationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E9A65C1E0D4FB3003EA270 /* YPAnimationProtocol.swift */; };
 		E6E9A6621E0D4FB3003EA270 /* YPSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E9A65D1E0D4FB3003EA270 /* YPSwitch.swift */; };
+		E6E9A6641E113223003EA270 /* YPBounceAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E9A6631E113223003EA270 /* YPBounceAnimation.swift */; };
+		E6E9A6661E11325E003EA270 /* YPRotationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E9A6651E11325E003EA270 /* YPRotationAnimation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		E6E9A65B1E0D4FB3003EA270 /* YPAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPAnimation.swift; sourceTree = "<group>"; };
 		E6E9A65C1E0D4FB3003EA270 /* YPAnimationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPAnimationProtocol.swift; sourceTree = "<group>"; };
 		E6E9A65D1E0D4FB3003EA270 /* YPSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPSwitch.swift; sourceTree = "<group>"; };
+		E6E9A6631E113223003EA270 /* YPBounceAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPBounceAnimation.swift; sourceTree = "<group>"; };
+		E6E9A6651E11325E003EA270 /* YPRotationAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPRotationAnimation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,8 @@
 			children = (
 				E6E9A6591E0D4FB3003EA270 /* YPNativeAnimation.swift */,
 				E6E9A65A1E0D4FB3003EA270 /* YPPopAnimation.swift */,
+				E6E9A6631E113223003EA270 /* YPBounceAnimation.swift */,
+				E6E9A6651E11325E003EA270 /* YPRotationAnimation.swift */,
 			);
 			path = AnimationType;
 			sourceTree = "<group>";
@@ -295,11 +301,13 @@
 			files = (
 				E6E9A6601E0D4FB3003EA270 /* YPAnimation.swift in Sources */,
 				E6E9A62C1E0D4F36003EA270 /* ViewController.swift in Sources */,
+				E6E9A6661E11325E003EA270 /* YPRotationAnimation.swift in Sources */,
 				E6E9A65E1E0D4FB3003EA270 /* YPNativeAnimation.swift in Sources */,
 				E6E9A62A1E0D4F36003EA270 /* AppDelegate.swift in Sources */,
 				E6E9A65F1E0D4FB3003EA270 /* YPPopAnimation.swift in Sources */,
 				E6E9A6621E0D4FB3003EA270 /* YPSwitch.swift in Sources */,
 				E6E9A6611E0D4FB3003EA270 /* YPAnimationProtocol.swift in Sources */,
+				E6E9A6641E113223003EA270 /* YPBounceAnimation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,6 +560,7 @@
 				E6E9A6501E0D4F39003EA270 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E6E9A6511E0D4F3A003EA270 /* Build configuration list for PBXNativeTarget "YPSwitchExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -560,6 +569,7 @@
 				E6E9A6531E0D4F3A003EA270 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E6E9A6541E0D4F3A003EA270 /* Build configuration list for PBXNativeTarget "YPSwitchExampleUITests" */ = {
 			isa = XCConfigurationList;
@@ -568,6 +578,7 @@
 				E6E9A6561E0D4F3A003EA270 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
