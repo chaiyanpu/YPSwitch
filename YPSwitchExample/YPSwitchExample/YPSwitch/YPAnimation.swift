@@ -17,10 +17,25 @@ class YPAnimation:YPAnimationProtocol{
     
     var animationSize:CGSize?
     
-     var animDuration = 1.0
+    var animDuration = 1.0
+
+    enum AnimationTarget {
+        case on
+        case off
+    }
+    
+    var progress:CGFloat!
+    
+    var animationTarget:AnimationTarget = .on
+    
     
     func playAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?,to:Float){
         fatalError("override method in subclass")
     }
-   
+    
+    //template
+    func value<T>(onValue:T,offValue:T) -> T{
+        return animationTarget == .on ? onValue : offValue
+    }
+    
 }

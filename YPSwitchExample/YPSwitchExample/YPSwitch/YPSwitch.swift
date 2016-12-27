@@ -20,7 +20,7 @@ enum YPSwitchType {
         case .switchOne:
             return YPNativeAnimation()
         case .switchTwo:
-            return YPPopAnimation()
+            return YPSpringAnimation()
         case .switchThree:
             return YPBounceAnimation()
         case .switchFour:

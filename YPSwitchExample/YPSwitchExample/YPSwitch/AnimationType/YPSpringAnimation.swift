@@ -1,17 +1,18 @@
 //
-//  YPNativeAnimation.swift
+//  YPSpringAnimation.swift
 //  YPSwitch
 //
-//  Created by chai on 2016/12/16.
+//  Created by chai on 2016/12/14.
 //  Copyright © 2016年 chaiyanpu. All rights reserved.
 //
 
 import UIKit
 
-class YPNativeAnimation:YPAnimation{
-
+class YPSpringAnimation:YPAnimation{
+    
+    
     //MARK: - YPAnimationProtocol,animation method.
-    override func playAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?,to progress:Float){
+    override func playAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?,to:Float){
         
         guard animationLayer != nil  else {
             fatalError("animationLayer is nil")
@@ -21,8 +22,9 @@ class YPNativeAnimation:YPAnimation{
         strokeBackgroundAnimation(animationLayer!.stokeLayer)
         backgroundAnimation(animationLayer!.bgLayer)
         thumbAnimation(animationLayer!.thumbLayer)
-        
+
     }
+    
     
     // MARK: layer animation
     
@@ -66,7 +68,7 @@ class YPNativeAnimation:YPAnimation{
         groupAnimation.isRemovedOnCompletion = false
         groupAnimation.fillMode = kCAFillModeForwards
         bgLayer.add(groupAnimation, forKey: "backgroundAnimations")
-       
+        
     }
     
     func backgroundFillAnimation(_ stokeLayer:CAShapeLayer)-> CAKeyframeAnimation {
@@ -121,7 +123,6 @@ class YPNativeAnimation:YPAnimation{
         posAnim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         return posAnim
     }
-    
     
     
 }
