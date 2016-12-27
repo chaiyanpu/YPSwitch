@@ -11,13 +11,13 @@ import UIKit
 class YPNativeAnimation:YPAnimation{
 
     //MARK: - YPAnimationProtocol,animation method.
-    override func playAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?,to progress:Float){
+    override func playAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?,to target:AnimationTarget){
         
         guard animationLayer != nil  else {
             fatalError("animationLayer is nil")
         }
         
-        animationTarget = progress > 0.5 ? .on : .off
+        animationTarget = target
         strokeBackgroundAnimation(animationLayer!.stokeLayer)
         backgroundAnimation(animationLayer!.bgLayer)
         thumbAnimation(animationLayer!.thumbLayer)
@@ -32,8 +32,7 @@ class YPNativeAnimation:YPAnimation{
         let groupAnimation = CAAnimationGroup()
         groupAnimation.duration = animDuration
         groupAnimation.animations = [strokeColorAnimation(stokeLayer), strokeFillColorAnimation(stokeLayer)]
-        groupAnimation.isRemovedOnCompletion = false
-        groupAnimation.fillMode = kCAFillModeForwards
+        keepAnimation(groupAnimation)
         stokeLayer.add(groupAnimation, forKey: "strokeBackgroundAnimations")
     }
     
@@ -49,7 +48,7 @@ class YPNativeAnimation:YPAnimation{
     func strokeFillColorAnimation(_ stokeLayer:CAShapeLayer)-> CABasicAnimation {
         
         let fillAnim = CABasicAnimation(keyPath: "fillColor")
-        if animationTarget == .off {
+        if animationTarget == .close {
             fillAnim.fromValue = stokeLayer.fillColor
             fillAnim.toValue = stokeLayer.strokeColor
             fillAnim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
@@ -63,8 +62,7 @@ class YPNativeAnimation:YPAnimation{
         let groupAnimation = CAAnimationGroup()
         groupAnimation.duration = animDuration
         groupAnimation.animations = [backgroundFillAnimation(bgLayer)]
-        groupAnimation.isRemovedOnCompletion = false
-        groupAnimation.fillMode = kCAFillModeForwards
+        keepAnimation(groupAnimation)
         bgLayer.add(groupAnimation, forKey: "backgroundAnimations")
        
     }
@@ -103,8 +101,7 @@ class YPNativeAnimation:YPAnimation{
         let groupAnimation = CAAnimationGroup()
         groupAnimation.duration = animDuration
         groupAnimation.animations = [thumbPositionAnimation()]
-        groupAnimation.isRemovedOnCompletion = false;
-        groupAnimation.fillMode = kCAFillModeForwards
+        keepAnimation(groupAnimation)
         thumbLayer.add(groupAnimation, forKey: "thumbAnimations")
     }
     
@@ -121,8 +118,6 @@ class YPNativeAnimation:YPAnimation{
         posAnim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         return posAnim
     }
-    
-    
     
 }
 

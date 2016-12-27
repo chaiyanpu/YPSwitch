@@ -21,15 +21,14 @@ class ViewController: UIViewController {
     
     func addSwitchOne(){
         let rect = CGRect(x: 50, y: 50, width: 50, height: 25)
-        let ypSwitch = YPSwitch(position: rect.origin, type: .switchOne){
+        //TODO:需要添加个初始状态
+        let ypSwitch = YPSwitch(position: rect.origin,state:.open){
             [unowned self] result in
             result
-                .off{ value in
-                    print(value)
+                .off{
                     self.view.backgroundColor = UIColor.white
                 }
-                .on{ value in
-                    print(value)
+                .on{
                     self.view.backgroundColor = UIColor.lightGray
             }
         }
@@ -37,25 +36,21 @@ class ViewController: UIViewController {
     }
     
     func addSwitchTwo(){
-        let ypSwitchTwo = YPSwitch(position:CGPoint(x:50,y:200), type: .switchOne)
+        let ypSwitchTwo = YPSwitch(position:CGPoint(x:50,y:200),type: .switchOne)
         
         ypSwitchTwo.addTarget(self, action: #selector(self.valueChange(_:)), for: UIControlEvents.valueChanged)
         view.addSubview(ypSwitchTwo)
     }
     
     func valueChange(_ sender:YPSwitch){
-        switch sender.switchState{
-        case let .open(value):
-            
-            print(value)
-            self.view.backgroundColor = UIColor.lightGray
-        case let .close(value):
-            
-            print(value)
-            self.view.backgroundColor = UIColor.white
-        }
+        sender.switchState
+            .off {
+                self.view.backgroundColor = UIColor.lightGray
+            }
+            .on {
+                self.view.backgroundColor = UIColor.white
+            }
     }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -7,24 +7,42 @@
 //
 
 import UIKit
+
+typealias AnimationTarget = YPSwitchResult
+
 protocol YPAnimationProtocol{
     
-    var bgTargetColor:UIColor{get}
+    var progress:CGFloat{get}
     
-    var thumbTargetColor:UIColor{get}
+    var animationTarget:AnimationTarget{set get}
     
-    func playAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?,to:Float)
+    var animDuration:Float{get}
+    
+    func playAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?,to target:AnimationTarget)
+    
+    //保持动画的存在
+    func keepAnimation(_ animation:CAAnimation)
     
 }
 
 extension YPAnimationProtocol{
     
-    var bgTargetColor:UIColor{
-        return UIColor.green
+    var animationTarget:AnimationTarget{
+        return .open
     }
     
-    var thumbTargetColor:UIColor{
-        return UIColor.darkGray
+    var animDuration:Float{
+        return 1.0
     }
     
+    var progress:CGFloat{
+        return 0.0
+    }
+    
+    
+    //保持动画的存在
+    func keepAnimation(_ animation:CAAnimation){
+        animation.isRemovedOnCompletion = false
+        animation.fillMode = kCAFillModeForwards
+    }
 }

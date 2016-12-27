@@ -12,19 +12,18 @@ class YPSpringAnimation:YPAnimation{
     
     
     //MARK: - YPAnimationProtocol,animation method.
-    override func playAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?,to:Float){
+    override func playAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?,to target:AnimationTarget){
         
         guard animationLayer != nil  else {
             fatalError("animationLayer is nil")
         }
         
-        animationTarget = progress > 0.5 ? .on : .off
+        animationTarget = target
         strokeBackgroundAnimation(animationLayer!.stokeLayer)
         backgroundAnimation(animationLayer!.bgLayer)
         thumbAnimation(animationLayer!.thumbLayer)
 
     }
-    
     
     // MARK: layer animation
     
@@ -51,7 +50,7 @@ class YPSpringAnimation:YPAnimation{
     func strokeFillColorAnimation(_ stokeLayer:CAShapeLayer)-> CABasicAnimation {
         
         let fillAnim = CABasicAnimation(keyPath: "fillColor")
-        if animationTarget == .off {
+        if animationTarget == .close {
             fillAnim.fromValue = stokeLayer.fillColor
             fillAnim.toValue = stokeLayer.strokeColor
             fillAnim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
@@ -123,7 +122,6 @@ class YPSpringAnimation:YPAnimation{
         posAnim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         return posAnim
     }
-    
     
 }
 

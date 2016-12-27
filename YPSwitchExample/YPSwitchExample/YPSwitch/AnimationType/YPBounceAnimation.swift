@@ -11,10 +11,22 @@ import UIKit
 class YPBounceAnimation:YPAnimation{
     
     //MARK: - YPAnimationProtocol,animation method.
-    override func playAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?,to:Float){
+    override func playAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?,to Target:AnimationTarget){
         
         print("hehh")
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
 

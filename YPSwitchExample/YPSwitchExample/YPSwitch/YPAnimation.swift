@@ -16,26 +16,26 @@ class YPAnimation:YPAnimationProtocol{
     var thumbTargetColor:UIColor?
     
     var animationSize:CGSize?
-    
-    var animDuration = 1.0
-
-    enum AnimationTarget {
-        case on
-        case off
-    }
-    
+   
     var progress:CGFloat!
     
-    var animationTarget:AnimationTarget = .on
+    var animationTarget:AnimationTarget = .open
     
+    var animDuration = 1.0
     
-    func playAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?,to:Float){
+    func playAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?,to target:AnimationTarget){
         fatalError("override method in subclass")
     }
     
     //template
     func value<T>(onValue:T,offValue:T) -> T{
-        return animationTarget == .on ? onValue : offValue
+        return animationTarget == .open ? onValue : offValue
     }
+    
+    //保持动画的存在
+//    func keepAnimation(_ animation:CAAnimation){
+//        animation.isRemovedOnCompletion = false
+//        animation.fillMode = kCAFillModeForwards
+//    }
     
 }

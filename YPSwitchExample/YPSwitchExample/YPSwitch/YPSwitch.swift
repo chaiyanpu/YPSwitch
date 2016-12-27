@@ -29,16 +29,16 @@ enum YPSwitchType {
     }
 }
 
-enum YPSwitchResult<T>{
+enum YPSwitchResult{
     
-    case open(T)
-    case close(T)
+    case open
+    case close
     
     @discardableResult
-    func on(_ on:(_ value:T) -> Void) -> YPSwitchResult{
+    func on(_ on:() -> Void) -> YPSwitchResult{
         switch self{
-        case let .open(value):
-            on(value)
+        case  .open:
+            on()
         default:
             break
         }
@@ -46,26 +46,33 @@ enum YPSwitchResult<T>{
     }
     
     @discardableResult
-    func off(_ off:(_ value:T) -> Void) -> YPSwitchResult {
+    func off(_ off:() -> Void) -> YPSwitchResult {
         switch self {
-        case let .close(value):
-            off(value)
+        case .close:
+            off()
         default:
             break
         }
         return self
     }
 }
-
+typealias SwitchState = YPSwitchResult
 
 //TODO: - ViewModel
 class YPSwitch:UIControl{
     
-    //可以为回调添加关联值,T为关联值的类型
-    typealias T = String
+    //灰色边
+    open var strokeColor = #colorLiteral(red: 0.9019607843, green: 0.9019607843, blue: 0.9019607843, alpha: 1)
+    //未选中背景颜色
+    open var unselectedColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    //选中背景
+    open var selectedColor = #colorLiteral(red: 0.4352941176, green: 0.8470588235, blue: 0.3921568627, alpha: 1)
+    //滑块颜色
+    open var trumbColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+
     
     //CompleteHandler
-    var handler:((_ action:YPSwitchResult<T>)->())?
+    var handler:((_ action:YPSwitchResult)->())?
     
     //Layer collection
     open var animationLayer:(stokeLayer:CAShapeLayer,bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer)?
@@ -76,37 +83,31 @@ class YPSwitch:UIControl{
     open var stokeLineWidth:CGFloat = 1
     //thumb离边的距离
     open var thumbInset : CGFloat = 1
-    //灰色边
-    open var strokeColor = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1.0)
-    //未选中背景颜色
-    open var unselectedColor = UIColor.white
-    //选中背景
-    open var selectedColor = UIColor(red: 111/255.0, green: 216/255.0, blue: 100/255.0, alpha: 1.0)
-    //滑块颜色
-    open var trumbColor = UIColor.white
     
     open var animation:YPAnimation?
-    var switchState: YPSwitchResult = .close("i an close")
+    var switchState: YPSwitchResult = .close
+    
     fileprivate var isOn:Bool = false
     fileprivate var isTap: Bool = false
-    
     fileprivate var touchPoint:CGPoint!
     fileprivate var endPoint:CGPoint!
 
-    init(position:CGPoint,size:CGSize = CGSize(width:60,height:35),type:YPSwitchType,_ hadler:@escaping (_ action:YPSwitchResult<T>)->()){
+    //TODO:根据State创建Layer.
+    init(position:CGPoint,size:CGSize = CGSize(width:60,height:35),state:SwitchState = .close,type:YPSwitchType = .switchOne,_ hadler:@escaping (_ action:YPSwitchResult)->()){
         
         super.init(frame:CGRect(origin: position, size: size))
-        config(size,type)
+        config(size,state,type)
         handler = hadler
     }
     
-    init(position:CGPoint,size:CGSize = CGSize(width:60,height:35),type:YPSwitchType){
+    init(position:CGPoint,size:CGSize = CGSize(width:60,height:35),state:SwitchState = .close,type:YPSwitchType = .switchOne){
         super.init(frame:CGRect(origin: position, size: size))
-        config(size,type)
+        config(size,state,type)
     }
     
-    func config(_ size:CGSize,_ type:YPSwitchType){
+    func config(_ size:CGSize,_ state:SwitchState,_ type:YPSwitchType){
         backgroundColor = UIColor.clear
+        switchState = state
         animation = type.animation
         animation?.animationSize = size
         animation?.animDuration = animDuration
@@ -153,9 +154,9 @@ class YPSwitch:UIControl{
         switch isTap {
         case true:
             if isOn{
-                animation?.playAnimation(animationLayer: animationLayer, to: 0)
+                animation?.playAnimation(animationLayer: animationLayer, to:.close)
             }else{
-                animation?.playAnimation(animationLayer: animationLayer, to: 1)
+                animation?.playAnimation(animationLayer: animationLayer, to:.open)
             }
             //TODO:回调
             callBack()
@@ -170,12 +171,12 @@ class YPSwitch:UIControl{
         switch isOn {
         case true:
             if touchPoint.x - endPoint.x - self.frame.size.width/3  > 0{
-                animation?.playAnimation(animationLayer: animationLayer, to: 0)
+                animation?.playAnimation(animationLayer: animationLayer, to: .close)
                 callBack()
             }
         case false:
             if endPoint.x - touchPoint.x - self.frame.size.width/3 > 0{
-                animation?.playAnimation(animationLayer: animationLayer, to: 1)
+                animation?.playAnimation(animationLayer: animationLayer, to: .open)
                 callBack()
             }
         }
@@ -184,7 +185,7 @@ class YPSwitch:UIControl{
     private func callBack(){
         
         isOn = !isOn
-        switchState = isOn == true ? .open("i an open") : .close("i an close")
+        switchState = isOn == true ? .open : .close
         handler?(switchState)
         sendActions(for: UIControlEvents.valueChanged)
     }
