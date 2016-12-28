@@ -41,8 +41,8 @@ class YPSpringAnimation:YPAnimation{
     func strokeColorAnimation(_ stokeLayer:CAShapeLayer)-> CABasicAnimation {
         
         let strokeAnim = CABasicAnimation(keyPath: "strokeColor")
-        strokeAnim.fromValue = value(onValue: stokeLayer.strokeColor, offValue: stokeLayer.fillColor)
-        strokeAnim.toValue = value(onValue: stokeLayer.fillColor, offValue: stokeLayer.strokeColor)
+        strokeAnim.fromValue = value(animationTarget,onValue: stokeLayer.strokeColor, offValue: stokeLayer.fillColor)
+        strokeAnim.toValue = value(animationTarget,onValue: stokeLayer.fillColor, offValue: stokeLayer.strokeColor)
         strokeAnim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         return strokeAnim
     }
@@ -81,8 +81,8 @@ class YPSpringAnimation:YPAnimation{
         let fillAnim = CAKeyframeAnimation(keyPath: "path")
         
         fillAnim.values = [
-            value(onValue: beginPath, offValue: endPath).cgPath,
-            value(onValue: endPath, offValue: beginPath).cgPath]
+            value(animationTarget,onValue: beginPath, offValue: endPath).cgPath,
+            value(animationTarget,onValue: endPath, offValue: beginPath).cgPath]
         
         fillAnim.keyTimes  = [
             NSNumber(value: 0.0 as Float),
@@ -117,8 +117,8 @@ class YPSpringAnimation:YPAnimation{
         let posAnim = CABasicAnimation(keyPath: "position")
         let leftValue = NSValue(cgPoint:CGPoint(x: 0, y: 0))
         let rightValue = NSValue(cgPoint:CGPoint( x: (animationSize!.width - animationSize!.height), y: 0))
-        posAnim.fromValue = value(onValue: leftValue, offValue: rightValue)
-        posAnim.toValue = value(onValue: rightValue, offValue: leftValue)
+        posAnim.fromValue = value(animationTarget,onValue: leftValue, offValue: rightValue)
+        posAnim.toValue = value(animationTarget,onValue: rightValue, offValue: leftValue)
         posAnim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         return posAnim
     }

@@ -45,10 +45,10 @@ class ViewController: UIViewController {
     func valueChange(_ sender:YPSwitch){
         sender.switchState
             .off {
-                self.view.backgroundColor = UIColor.lightGray
+                self.view.backgroundColor = UIColor.white
             }
             .on {
-                self.view.backgroundColor = UIColor.white
+                self.view.backgroundColor = UIColor.lightGray
             }
     }
 

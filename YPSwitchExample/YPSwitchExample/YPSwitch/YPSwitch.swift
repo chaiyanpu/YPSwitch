@@ -63,6 +63,8 @@ class YPSwitch:UIControl{
     
     //灰色边
     open var strokeColor = #colorLiteral(red: 0.9019607843, green: 0.9019607843, blue: 0.9019607843, alpha: 1)
+    //选中的边
+    open var selectedStokeColor = #colorLiteral(red: 0.4352941176, green: 0.8470588235, blue: 0.3921568627, alpha: 1)
     //未选中背景颜色
     open var unselectedColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     //选中背景
@@ -158,10 +160,9 @@ class YPSwitch:UIControl{
             }else{
                 animation?.playAnimation(animationLayer: animationLayer, to:.open)
             }
-            //TODO:回调
+            
             callBack()
         case false:
-            //TODO: - 判断结束拖拽位置
             endDrag()
         }
     }
@@ -190,10 +191,17 @@ class YPSwitch:UIControl{
         sendActions(for: UIControlEvents.valueChanged)
     }
     
+    
+    
 }
 
 //MARK: - 构造Layer  View层
 extension YPSwitch{
+    
+    //template
+    func value<T>(_ state:SwitchState,onValue:T,offValue:T) -> T{
+        return state == .open ? onValue : offValue
+    }
     
     fileprivate func buildLayer(_ size:CGSize){
         
@@ -210,7 +218,7 @@ extension YPSwitch{
                                                            y: 0,
                                                            width: size.width,
                                                            height:size.height)).cgPath
-        strokeBackgroundLayer.strokeColor = strokeColor.cgColor
+        strokeBackgroundLayer.strokeColor = value(switchState, onValue: self.strokeColor, offValue: selectedStokeColor).cgColor
         strokeBackgroundLayer.fillColor = selectedColor.cgColor
         strokeBackgroundLayer.lineWidth = stokeLineWidth
         layer.addSublayer(strokeBackgroundLayer)

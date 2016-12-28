@@ -7,7 +7,10 @@
 //
 
 import UIKit
-
+//template
+func value<T>(_ state:SwitchState,onValue:T,offValue:T) -> T{
+    return state == .open ? onValue : offValue
+}
 class YPAnimation:YPAnimationProtocol{
        
     //MARK: - YPAnimationProtocol
@@ -25,11 +28,6 @@ class YPAnimation:YPAnimationProtocol{
     
     func playAnimation(animationLayer:(bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer,stokeLayer:CAShapeLayer)?,to target:AnimationTarget){
         fatalError("override method in subclass")
-    }
-    
-    //template
-    func value<T>(onValue:T,offValue:T) -> T{
-        return animationTarget == .open ? onValue : offValue
     }
     
     //保持动画的存在
