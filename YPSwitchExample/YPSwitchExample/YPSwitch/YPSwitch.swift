@@ -191,7 +191,8 @@ class YPSwitch:UIControl{
         sendActions(for: UIControlEvents.valueChanged)
     }
     
-    
+    var openStateLayer:CALayer!
+    var coseStateLayer:CALayer!
     
 }
 
@@ -218,7 +219,8 @@ extension YPSwitch{
                                                            y: 0,
                                                            width: size.width,
                                                            height:size.height)).cgPath
-        strokeBackgroundLayer.strokeColor = value(switchState, onValue: self.strokeColor, offValue: selectedStokeColor).cgColor
+        strokeBackgroundLayer.strokeColor = strokeColor.cgColor
+            //value(switchState, onValue: self.strokeColor, offValue: selectedStokeColor).cgColor
         strokeBackgroundLayer.fillColor = selectedColor.cgColor
         strokeBackgroundLayer.lineWidth = stokeLineWidth
         layer.addSublayer(strokeBackgroundLayer)
