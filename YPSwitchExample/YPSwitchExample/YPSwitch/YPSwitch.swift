@@ -275,4 +275,58 @@ extension YPSwitch{
 
 }
 
+class TempLayer:CALayer{
+    
+    let size:CGSize = CGSize(width: 100, height: 100)
+    var sizeH:CGFloat{return size.height}
+    var diameter:CGFloat{return (sizeH - thumbInset - stokeLineWidth)}
+    
+    override init() {
+        super.init()
+    }
+    
+
+    var thumbOpenPath:UIBezierPath{return UIBezierPath(ovalIn: CGRect(x: thumbInset/2 + stokeLineWidth/2,
+                                                                 y: thumbInset/2 + stokeLineWidth/2,
+                                                                 width: diameter,
+                                                                 height: diameter))}
+    var thumbClosePath:UIBezierPath{return UIBezierPath(ovalIn: CGRect(x: thumbInset/2 + stokeLineWidth/2,
+                                                                  y: thumbInset/2 + stokeLineWidth/2,
+                                                                  width: diameter,
+                                                                  height: diameter))}
+    
+    //灰色边
+    open var strokeColor = #colorLiteral(red: 0.9019607843, green: 0.9019607843, blue: 0.9019607843, alpha: 1)
+    //选中的边
+    open var selectedStokeColor = #colorLiteral(red: 0.4352941176, green: 0.8470588235, blue: 0.3921568627, alpha: 1)
+    //未选中背景颜色
+    open var unselectedColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    //选中背景
+    open var selectedColor = #colorLiteral(red: 0.4352941176, green: 0.8470588235, blue: 0.3921568627, alpha: 1)
+    //滑块颜色
+    open var trumbColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    
+    
+    //CompleteHandler
+    var handler:((_ action:YPSwitchResult)->())?
+    
+    //Layer collection
+    open var animationLayer:(stokeLayer:CAShapeLayer,bgLayer: CAShapeLayer, thumbLayer: CAShapeLayer)?
+    
+    //Switch动画时间
+    open var animDuration = 0.5
+    //边的宽度
+    open var stokeLineWidth:CGFloat = 1
+    //thumb离边的距离
+    open var thumbInset : CGFloat = 1
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    
+}
+
+
 
