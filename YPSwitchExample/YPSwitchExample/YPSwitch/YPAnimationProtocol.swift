@@ -39,10 +39,10 @@ extension YPAnimationProtocol{
         return 0.0
     }
     
-    
     //保持动画的存在
     func keepAnimation(_ animation:CAAnimation){
         animation.isRemovedOnCompletion = false
         animation.fillMode = kCAFillModeForwards
     }
+    
 }
