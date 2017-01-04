@@ -275,7 +275,10 @@ extension YPSwitch{
 
 }
 
+
 class TempLayer:CALayer{
+    
+    var state = 1
     
     let size:CGSize = CGSize(width: 100, height: 100)
     var sizeH:CGFloat{return size.height}
@@ -283,17 +286,33 @@ class TempLayer:CALayer{
     
     override init() {
         super.init()
+        addThumbLayer()
     }
     
+    func addThumbLayer(){
+        let thumbLayer = CAShapeLayer()
+        thumbLayer.path = thumbClosePath.cgPath
+        thumbLayer.strokeColor = strokeColor.cgColor
+        thumbLayer.fillColor = trumbColor.cgColor
+        thumbLayer.lineWidth = 0.5
+        thumbLayer.shadowColor = UIColor.black.cgColor
+        thumbLayer.shadowOpacity = 0.3
+        thumbLayer.shadowRadius = 1
+        thumbLayer.shadowOffset = CGSize(width: 0, height: 2)
+        self.addSublayer(thumbLayer)
+    }
+    
+    let thumbLayer:CALayer = CALayer()
+    var inset:CGFloat{return thumbInset/2 + stokeLineWidth/2}
+    var thumbX:CGFloat{return state == 1 ? inset : self.frame.width - diameter - inset}
+    var thumbClosePath:UIBezierPath{return UIBezierPath(ovalIn: CGRect(x: thumbX,
+                                                                       y: inset,
+                                                                       width: diameter,
+                                                                       height: diameter))}
+    
 
-    var thumbOpenPath:UIBezierPath{return UIBezierPath(ovalIn: CGRect(x: thumbInset/2 + stokeLineWidth/2,
-                                                                 y: thumbInset/2 + stokeLineWidth/2,
-                                                                 width: diameter,
-                                                                 height: diameter))}
-    var thumbClosePath:UIBezierPath{return UIBezierPath(ovalIn: CGRect(x: thumbInset/2 + stokeLineWidth/2,
-                                                                  y: thumbInset/2 + stokeLineWidth/2,
-                                                                  width: diameter,
-                                                                  height: diameter))}
+    var thumbOpenPath:UIBezierPath{return thumbClosePath}
+    
     
     //灰色边
     open var strokeColor = #colorLiteral(red: 0.9019607843, green: 0.9019607843, blue: 0.9019607843, alpha: 1)
@@ -318,7 +337,7 @@ class TempLayer:CALayer{
     //边的宽度
     open var stokeLineWidth:CGFloat = 1
     //thumb离边的距离
-    open var thumbInset : CGFloat = 1
+    open var thumbInset:CGFloat = 1
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
