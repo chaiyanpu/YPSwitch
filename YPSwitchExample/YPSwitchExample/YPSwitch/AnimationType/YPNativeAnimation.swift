@@ -39,8 +39,8 @@ class YPNativeAnimation:YPAnimation{
     func strokeColorAnimation(_ stokeLayer:CAShapeLayer)-> CABasicAnimation {
         
         let strokeAnim = CABasicAnimation(keyPath: "strokeColor")
-        strokeAnim.fromValue = value(animationTarget,onValue: stokeLayer.strokeColor, offValue: stokeLayer.fillColor)
-        strokeAnim.toValue = value(animationTarget,onValue: stokeLayer.fillColor, offValue: stokeLayer.strokeColor)
+        strokeAnim.fromValue = value(animationTarget, onValue: stokeLayer.strokeColor, offValue: stokeLayer.fillColor)
+        strokeAnim.toValue = value(animationTarget, onValue: stokeLayer.fillColor, offValue: stokeLayer.strokeColor)
         strokeAnim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         return strokeAnim
     }
