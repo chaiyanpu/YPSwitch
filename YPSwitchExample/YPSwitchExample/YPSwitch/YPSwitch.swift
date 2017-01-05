@@ -289,8 +289,8 @@ class TempLayer:CALayer{
         addThumbLayer()
     }
     
+    //thumbLayer
     func addThumbLayer(){
-        let thumbLayer = CAShapeLayer()
         thumbLayer.path = thumbClosePath.cgPath
         thumbLayer.strokeColor = strokeColor.cgColor
         thumbLayer.fillColor = trumbColor.cgColor
@@ -302,7 +302,7 @@ class TempLayer:CALayer{
         self.addSublayer(thumbLayer)
     }
     
-    let thumbLayer:CALayer = CALayer()
+    let thumbLayer:CAShapeLayer = CAShapeLayer()
     var inset:CGFloat{return thumbInset/2 + stokeLineWidth/2}
     var thumbX:CGFloat{return state == 1 ? inset : self.frame.width - diameter - inset}
     var thumbClosePath:UIBezierPath{return UIBezierPath(ovalIn: CGRect(x: thumbX,
@@ -310,9 +310,59 @@ class TempLayer:CALayer{
                                                                        width: diameter,
                                                                        height: diameter))}
     
-
-    var thumbOpenPath:UIBezierPath{return thumbClosePath}
+    var thumbOpenPath:UIBezierPath{return UIBezierPath(ovalIn: CGRect(x: inset,
+                                                                      y: inset,
+                                                                      width: diameter,
+                                                                      height: diameter))}
     
+    //bgLayer
+    func addBGLayer(){
+        backgroundLayer.path = bgClosePath.cgPath
+        backgroundLayer.fillColor = bgUnselectedColor.cgColor
+        self.addSublayer(backgroundLayer)
+    }
+    
+    var bgClosePath:UIBezierPath{
+        return UIBezierPath(roundedRect: CGRect(x: stokeLineWidth/2,
+                                                y: stokeLineWidth/2,
+                                                width: size.width - stokeLineWidth, height: size.height - stokeLineWidth),
+                            cornerRadius: size.height/2)
+    }
+    var bgOpenPath:UIBezierPath{
+        return UIBezierPath(ovalIn: CGRect(x: size.width/2,
+                                           y: size.height/2,
+                                           width: 0,
+                                           height: 0))
+    }
+    var bgUnselectedColor:UIColor{return unselectedColor}
+    var bgSelectedColor:UIColor{return selectedStokeColor}
+    let backgroundLayer:CAShapeLayer = CAShapeLayer()
+    
+    
+    //stokeLayer
+    let stokeLayer:CAShapeLayer = CAShapeLayer()
+    func addStrokeBackgroundLayer(){
+        stokeLayer.path = bgStokeClosePath.cgPath
+        stokeLayer.strokeColor = stokeLayerStokeColor.cgColor
+        stokeLayer.fillColor = stokeLayerFillColor.cgColor
+        stokeLayer.lineWidth = stokeLayerLineWitch
+        self.addSublayer(stokeLayer)
+    }
+    var bgStokeClosePath:UIBezierPath{
+        return UIBezierPath(roundedRect: CGRect(x: stokeLineWidth/2,
+                                                y: stokeLineWidth/2,
+                                                width: size.width - stokeLineWidth, height: size.height - stokeLineWidth),
+                            cornerRadius: size.height/2)
+    }
+    var bgStokeOpenPath:UIBezierPath{
+        return UIBezierPath(ovalIn: CGRect(x: size.width/2,
+                                           y: size.height/2,
+                                           width: 0,
+                                           height: 0))
+    }
+    var stokeLayerStokeColor:UIColor{return strokeColor}
+    var stokeLayerLineWitch:CGFloat{return stokeLineWidth}
+    var stokeLayerFillColor:UIColor{return selectedColor}
     
     //灰色边
     open var strokeColor = #colorLiteral(red: 0.9019607843, green: 0.9019607843, blue: 0.9019607843, alpha: 1)
@@ -342,8 +392,6 @@ class TempLayer:CALayer{
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
     
 }
 
