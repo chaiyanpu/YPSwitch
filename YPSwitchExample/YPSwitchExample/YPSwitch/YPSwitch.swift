@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 enum YPSwitchType {
     
     case switchOne
@@ -355,11 +354,9 @@ class TempLayer:CALayer{
                             cornerRadius: size.height/2)
     }
     var bgStokeOpenPath:UIBezierPath{
-        return UIBezierPath(ovalIn: CGRect(x: size.width/2,
-                                           y: size.height/2,
-                                           width: 0,
-                                           height: 0))
+        return bgStokeClosePath
     }
+    
     var stokeLayerStokeColor:UIColor{return strokeColor}
     var stokeLayerLineWitch:CGFloat{return stokeLineWidth}
     var stokeLayerFillColor:UIColor{return selectedColor}
