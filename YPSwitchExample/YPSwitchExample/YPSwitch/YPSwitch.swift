@@ -152,6 +152,7 @@ class YPSwitch:UIControl{
     fileprivate func animationByState(_ endPoint:CGPoint? = CGPoint(x: 0, y: 0)){
         //移除所有 Animation
         layer.removeAllAnimations()
+        
         switch isTap {
         case true:
             if isOn{
@@ -181,6 +182,7 @@ class YPSwitch:UIControl{
             }
         }
     }
+    
     //回调
     private func callBack(){
         
@@ -391,6 +393,7 @@ class TempLayer:CALayer{
     }
     
 }
+
 
 
 
