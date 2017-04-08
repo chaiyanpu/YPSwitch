@@ -10,19 +10,19 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    private var ypSwitchOne:YPSwitch?
+    private var ypSwitchTwo:YPSwitch?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         addSwitchOne()
         addSwitchTwo()
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     func addSwitchOne(){
         let rect = CGRect(x: 50, y: 50, width: 50, height: 25)
         //TODO:需要添加个初始状态
-        let ypSwitch = YPSwitch(position: rect.origin,state:.open){
+        let ypSwitchOne = YPSwitch(position: rect.origin,state:.open){
             [unowned self] result in
             result
                 .off{
@@ -32,14 +32,17 @@ class ViewController: UIViewController {
                     self.view.backgroundColor = UIColor.lightGray
             }
         }
-        view.addSubview(ypSwitch)
+        view.addSubview(ypSwitchOne)
     }
     
+    
+    
     func addSwitchTwo(){
-        let ypSwitchTwo = YPSwitch(position:CGPoint(x:50,y:200),type: .switchOne)
-        
-        ypSwitchTwo.addTarget(self, action: #selector(self.valueChange(_:)), for: UIControlEvents.valueChanged)
-        view.addSubview(ypSwitchTwo)
+        ypSwitchTwo = YPSwitch(position:CGPoint(x:50,y:50 + 25 + 10),type: .switchOne)
+        guard ypSwitchTwo != nil else {return}
+
+        ypSwitchTwo!.addTarget(self, action: #selector(self.valueChange(_:)), for: UIControlEvents.valueChanged)
+        view.addSubview(ypSwitchTwo!)
     }
     
     func valueChange(_ sender:YPSwitch){
@@ -52,6 +55,12 @@ class ViewController: UIViewController {
             }
     }
 
+    
+    
+    
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
