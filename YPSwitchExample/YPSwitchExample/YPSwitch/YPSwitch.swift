@@ -129,78 +129,6 @@ class YPSwitch:UIControl{
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool{
-        
-        isTap = true
-        touchPoint = touch.location(in: self)
-        
-        return true
-    }
-    
-    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool{
-        
-        isTap = false
-        endPoint = touch.location(in: self)
-        
-        return true
-    }
-    
-    override func endTracking(_ touch: UITouch?, with event: UIEvent?){
-        let endPoint = touch?.location(in: self)
-        if let point = endPoint{
-            if point.y < self.frame.size.height * 2 && point.y > -self.frame.size.height{
-                animationByState()
-            }
-        }
-    }
-    
-    override func cancelTracking(with event: UIEvent?){
-         animationByState()
-    }
-    
-    //根据状态决定行为
-    fileprivate func animationByState(_ endPoint:CGPoint? = CGPoint(x: 0, y: 0)){
-        //移除所有 Animation
-        layer.removeAllAnimations()
-        
-        switch isTap {
-        case true:
-            if isOn{
-                animation?.playAnimation(animationLayer: animationLayer, to:.close)
-            }else{
-                animation?.playAnimation(animationLayer: animationLayer, to:.open)
-            }
-            
-            callBack()
-        case false:
-            endDrag()
-        }
-    }
-    
-    fileprivate func endDrag(){
-        
-        switch isOn {
-        case true:
-            if touchPoint.x - endPoint.x - self.frame.size.width/3  > 0{
-                animation?.playAnimation(animationLayer: animationLayer, to: .close)
-                callBack()
-            }
-        case false:
-            if endPoint.x - touchPoint.x - self.frame.size.width/3 > 0{
-                animation?.playAnimation(animationLayer: animationLayer, to: .open)
-                callBack()
-            }
-        }
-    }
-    
-    //回调
-    private func callBack(){
-        
-        isOn = !isOn
-        switchState = isOn == true ? .open : .close
-        handler?(switchState)
-        sendActions(for: UIControlEvents.valueChanged)
-    }
     
 }
 
@@ -293,6 +221,83 @@ class YPSwitchLayer:CAShapeLayer{
         fatalError("init(coder:) has not been implemented")
     }
     
+}
+
+//事物处理
+extension YPSwitch{
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool{
+        
+        isTap = true
+        touchPoint = touch.location(in: self)
+        
+        return true
+    }
+    
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool{
+        
+        isTap = false
+        endPoint = touch.location(in: self)
+        
+        return true
+    }
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?){
+        let endPoint = touch?.location(in: self)
+        if let point = endPoint{
+            if point.y < self.frame.size.height * 2 && point.y > -self.frame.size.height{
+                animationByState()
+            }
+        }
+    }
+    
+    override func cancelTracking(with event: UIEvent?){
+        animationByState()
+    }
+    
+    //根据状态决定行为
+    fileprivate func animationByState(_ endPoint:CGPoint? = CGPoint(x: 0, y: 0)){
+        //移除所有 Animation
+        layer.removeAllAnimations()
+        
+        switch isTap {
+        case true:
+            if isOn{
+                animation?.playAnimation(animationLayer: animationLayer, to:.close)
+            }else{
+                animation?.playAnimation(animationLayer: animationLayer, to:.open)
+            }
+            
+            callBack()
+        case false:
+            endDrag()
+        }
+    }
+    
+    fileprivate func endDrag(){
+        
+        switch isOn {
+        case true:
+            if touchPoint.x - endPoint.x - self.frame.size.width/3  > 0{
+                animation?.playAnimation(animationLayer: animationLayer, to: .close)
+                callBack()
+            }
+        case false:
+            if endPoint.x - touchPoint.x - self.frame.size.width/3 > 0{
+                animation?.playAnimation(animationLayer: animationLayer, to: .open)
+                callBack()
+            }
+        }
+    }
+    
+    //回调
+    private func callBack(){
+        
+        isOn = !isOn
+        switchState = isOn == true ? .open : .close
+        handler?(switchState)
+        sendActions(for: UIControlEvents.valueChanged)
+    }
+
 }
 
 class YPSwitchConfig{
