@@ -57,6 +57,7 @@ enum YPSwitchResult{
 }
 typealias SwitchState = YPSwitchResult
 
+//入口
 class YPSwitch:UIControl{
     
     //CompleteHandler
@@ -112,6 +113,7 @@ class YPSwitch:UIControl{
     
 }
 
+//layer
 class YPSwitchLayer:CAShapeLayer{
     
     var state = 1
@@ -280,6 +282,7 @@ extension YPSwitch{
 
 }
 
+//config
 class YPSwitchConfig{
     
     //灰色边
@@ -292,7 +295,6 @@ class YPSwitchConfig{
     open static let selectedColor = #colorLiteral(red: 0.4352941176, green: 0.8470588235, blue: 0.3921568627, alpha: 1)
     //滑块颜色
     open static let trumbColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-
     //Switch动画时间
     open static let animDuration = 0.5
     //边的宽度

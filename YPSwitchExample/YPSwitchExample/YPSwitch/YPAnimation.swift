@@ -16,13 +16,8 @@ func value<T>(_ state:SwitchState,onValue:T,offValue:T) -> T{
 class YPAnimation:YPAnimationProtocol{
        
     //MARK: - YPAnimationProtocol
-    var bgTargetColor:UIColor?
-    
-    var thumbTargetColor:UIColor?
-    
+
     var animationSize:CGSize?
-   
-    var progress:CGFloat!
     
     var animationTarget:AnimationTarget = .open
     
